@@ -1,40 +1,42 @@
-var app = {
+
+var bff = new BFF();
+
+ReactDOM.render(<HomeView listService={bff.socketService}/>, document.getElementById('app'));
+// ReactDOM.render(<BluetoothAddView />, document.getElementById('app'));
+
+var app = function() {
 
     var bff;
 
     // Application Constructor
-    initialize: function() {
+    this.initialize = function() {
         this.bindEvents();
 
         bff = new BFF();
-    },
+
+        ReactDOM.render(<HomeView listService={bff.socketService} />, document.getElementById('app'));
+    }
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    this.bindEvents = function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
+    }
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    this.onDeviceReady = function() {
         app.receivedEvent('deviceready');
-
-        ReactDOM.render(<HomeView listService=bff.socketService />, 'body');
-    },
+    }
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    this.receivedEvent = function(id) {
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        ReactDOM.render(<HomeView listService={bff.socketService} />, document.getElementById('app'));
 
         console.log('Received Event: ' + id);
     }
 };
 
-app.initialize();
+// new app().initialize();
