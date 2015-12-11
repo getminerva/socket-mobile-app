@@ -21,10 +21,10 @@ window.HomeView = React.createClass({
 
 		return (
 			<div>
-				<header className='bar bar-standard bar-nav'>
+				<header className='bar bar-nav'>
 					<h1 className='title'>Socket</h1>
 					<a href="#add-device">
-						<span className='pull-right icon icon-plus'></span>
+						<span className='pull-right icon ion-plus'></span>
 					</a>
 				</header>
 				<div className="content">
