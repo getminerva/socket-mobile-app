@@ -1,7 +1,12 @@
 var app = {
+
+    var bff;
+
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+
+        bff = new BFF();
     },
     // Bind Event Listeners
     //
@@ -16,6 +21,8 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        ReactDOM.render(<HomeView listService=bff.socketService />, 'body');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

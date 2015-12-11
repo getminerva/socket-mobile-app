@@ -23,6 +23,12 @@ var SocketService = function() {
 		return deferred.promise();
 	}
 
+	this.getAll = function() {
+		var deferred = $.Deferred();
+		deferred.resolve(sockets);
+		return deferred.promise();
+	}
+
 	this.createSocket = function(socketInfo) {
 		// TODO: Some data verification
 
@@ -41,7 +47,30 @@ var SocketService = function() {
 			'uuid': 'aa:bb:cc:dd',
 			'nickName': 'Sockrates',
 			'macAddress': '00:00:00:00',
-			'curBrightness': 50
+			'curBrightness': 50,
+			'proximity': false,
+			'alarm': false,
+			'notification': false
+		},
+		{
+			'id': 1,
+			'uuid': 'aa:bb:cc:dd',
+			'nickName': 'Sockatoa',
+			'macAddress': '00:00:00:00',
+			'curBrightness': 50,
+			'proximity': false,
+			'alarm': false,
+			'notification': false
+		},
+		{
+			'id': 2,
+			'uuid': 'aa:bb:cc:dd',
+			'nickName': 'Sockiavelli',
+			'macAddress': '00:00:00:00',
+			'curBrightness': 50,
+			'proximity': false,
+			'alarm': false,
+			'notification': false
 		}
 	];
 }
