@@ -1,4 +1,4 @@
-window.HomeView = React.createClass({
+var HomeView = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'listService': null		// This shit's necessary

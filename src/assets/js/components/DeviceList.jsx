@@ -1,4 +1,4 @@
-window.DeviceItem = React.createClass({
+var DeviceItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'nickName': 'Sockrates',
@@ -15,7 +15,7 @@ window.DeviceItem = React.createClass({
 	}
 });
 
-window.DeviceList = React.createClass({
+var DeviceList = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'items': []

@@ -1,3 +1,44 @@
+var DeviceItem = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'nickName': 'Sockrates',
+			'macId': '00:1a:2b:3c:',
+		});
+	},
+	render: function() {
+		return (
+			<li className="table-view-cell">
+				<h4>{ this.props.nickName }</h4>
+				<p>{ this.props.macId }</p>
+			</li>
+		)
+	}
+});
+
+var DeviceList = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'items': []
+		});
+	},
+	render: function() {
+		// Map the items in props to the ul
+		var listItems = this.props.items.map(function(item) {
+			return (
+				<DeviceItem
+					nickName={item.nickName}
+					macId={item.macId}
+				/>
+			);
+		});
+		return (
+			<ul className="table-view">
+				{ listItems }
+			</ul>
+		);
+	}
+});
+
 var SocketItemIcons = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -124,3 +165,69 @@ var SocketList = React.createClass({
 		);
 	}
 });
+
+var BluetoothAddView = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'listService': null		// This shit's necessary
+		});
+	},
+	render: function() {
+		return (
+			<div>
+				<header className='bar bar-standard bar-nav'>
+					<a href="#">
+						<span className='pull-left icon icon-left icon-nav'></span>
+					</a>
+				</header>
+				<div className="content">
+					<button className="btn btn-positive btn-outlined">Tap</button>
+					<p>to discover new devices.</p>
+				</div>
+			</div>
+		);
+	}
+});
+
+var HomeView = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'listService': null		// This shit's necessary
+		});
+	},
+	getInitialState: function() {
+		return ({
+			'tab': 0
+		});
+	},
+	render: function() {
+		// Get list from service
+		var items = [];
+
+		if (this.props.listService) {
+			this.props.listService.getAll().done(function(sockets) {
+				items = sockets;
+			});
+		}
+
+		return (
+			<div>
+				<header className='bar bar-nav'>
+					<h1 className='title'>Socket</h1>
+					<a href="#add-device">
+						<span className='pull-right icon ion-plus'></span>
+					</a>
+				</header>
+				<div className="content">
+					<SocketList items={items} />
+				</div>
+			</div>
+		);
+	}
+});
+
+// import { Router, Route, Link } from 'react-router'
+
+var bff = new BFF();
+
+ReactDOM.render(<HomeView listService={bff.socketService}/>, document.getElementById('app'));

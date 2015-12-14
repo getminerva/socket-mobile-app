@@ -1,4 +1,4 @@
-window.BluetoothAddView = React.createClass({
+var BluetoothAddView = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'listService': null		// This shit's necessary
