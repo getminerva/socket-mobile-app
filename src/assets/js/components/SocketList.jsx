@@ -1,3 +1,5 @@
+var React = require('react');
+
 var SocketItemIcons = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -86,14 +88,14 @@ var SocketItem = React.createClass({
 	},
 	render: function() {
 		return (
-			<li className="table-view-cell">
+			<div>
 				<h4>{ this.props.nickName }</h4>
 				<SocketItemIcons
 					proximity={this.props.proximity}
 					alarm={this.props.alarm}
 					notification={this.props.notification}
 				/>
-			</li>
+			</div>
 		)
 	}
 });
@@ -108,13 +110,15 @@ var SocketList = React.createClass({
 		// Map the items in props to the ul
 		var listItems = this.props.items.map(function(item) {
 			return (
-				<SocketItem
-					nickName={item.nickName}
-					macId={item.macId}
-					proximity={item.proximity}
-					alarm={item.alarm}
-					notification={item.notification}
-				/>
+				<li className="table-view-cell">
+					<SocketItem
+						nickName={item.nickName}
+						macId={item.macId}
+						proximity={item.proximity}
+						alarm={item.alarm}
+						notification={item.notification}
+					/>
+				</li>
 			);
 		});
 		return (
@@ -124,3 +128,9 @@ var SocketList = React.createClass({
 		);
 	}
 });
+
+module.exports ={
+	SocketList: SocketList,
+	SocketItem: SocketItem,
+	SocketItemIcons: SocketItemIcons
+}

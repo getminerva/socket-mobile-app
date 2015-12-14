@@ -1,3 +1,5 @@
+var React = require('react');
+
 var DeviceItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -38,3 +40,8 @@ var DeviceList = React.createClass({
 		);
 	}
 });
+
+module.exports ={
+	DeviceList: DeviceList,
+	DeviceItem: DeviceItem,
+}

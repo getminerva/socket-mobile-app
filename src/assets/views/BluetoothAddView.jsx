@@ -1,3 +1,6 @@
+var React = require('react');
+var Link = require('react-router').Link;
+
 var BluetoothAddView = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -8,9 +11,11 @@ var BluetoothAddView = React.createClass({
 		return (
 			<div>
 				<header className='bar bar-standard bar-nav'>
-					<a href="#">
-						<span className='pull-left icon icon-left icon-nav'></span>
-					</a>
+					<Link to="/">
+						<a>
+							<span className='pull-left icon icon-left icon-nav'></span>
+						</a>
+					</Link>
 				</header>
 				<div className="content">
 					<button className="btn btn-positive btn-outlined">Tap</button>
@@ -20,3 +25,5 @@ var BluetoothAddView = React.createClass({
 		);
 	}
 });
+
+module.exports = BluetoothAddView;

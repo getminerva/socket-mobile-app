@@ -1,7 +1,10 @@
+var React = require('react');
+var Link = require('react-router').Link;
+
 var HomeView = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'listService': null		// This shit's necessary
+			'listService': new BFF().socketService	// This shit's necessary
 		});
 	},
 	getInitialState: function() {
@@ -23,9 +26,11 @@ var HomeView = React.createClass({
 			<div>
 				<header className='bar bar-nav'>
 					<h1 className='title'>Socket</h1>
-					<a href="#add-device">
-						<span className='pull-right icon ion-plus'></span>
-					</a>
+					<Link to='/add'>
+						<a>
+							<span className='pull-right icon ion-plus'></span>
+						</a>
+					</Link>
 				</header>
 				<div className="content">
 					<SocketList items={items} />
@@ -34,3 +39,5 @@ var HomeView = React.createClass({
 		);
 	}
 });
+
+module.exports = HomeView;

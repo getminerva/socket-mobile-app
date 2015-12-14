@@ -10,6 +10,8 @@ var BFF = function() {
 
 		this.socketService.initialize();
 		this.groupService.initialize();
+
+		return this;
 	}
 
 	this.initialize();
