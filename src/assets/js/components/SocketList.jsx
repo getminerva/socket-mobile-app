@@ -1,12 +1,10 @@
-var React = require('react');
+// var React = require('react');
 
 var SocketItemIcons = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'proximity': false,
-			'alarm': false,
-			'notification': false
-		});
+	defaultProps: {
+		'proximity': false,
+		'alarm': false,
+		'notification': false
 	},
 	render: function() {
 		var icp = 'ion icon ion-android-locate ';
@@ -23,14 +21,12 @@ var SocketItemIcons = React.createClass({
 })
 
 var SocketItem = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'nickName': 'Sockrates',
-			'macId': '00:1a:2b:3c:',
-			'proximity': false,
-			'alarm': false,
-			'notification': false,
-		});
+	defaultProps: {
+		'nickName': 'Sockrates',
+		'macId': '00:1a:2b:3c:',
+		'proximity': false,
+		'alarm': false,
+		'notification': false,
 	},
 	getInitialState: function() {
 		return ({
@@ -101,10 +97,8 @@ var SocketItem = React.createClass({
 });
 
 var SocketList = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'items': []
-		});
+	defaultProps: {
+		'items': []
 	},
 	render: function() {
 		// Map the items in props to the ul
@@ -129,8 +123,8 @@ var SocketList = React.createClass({
 	}
 });
 
-module.exports ={
+module.exports = {
 	SocketList: SocketList,
 	SocketItem: SocketItem,
 	SocketItemIcons: SocketItemIcons
-}
+};

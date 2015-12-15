@@ -1,11 +1,9 @@
-var React = require('react');
+// var React = require('react');
 var Link = require('react-router').Link;
 
 var BluetoothAddView = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'listService': null		// This shit's necessary
-		});
+	defaultProps: {
+		'listService': null		// This shit's necessary
 	},
 	render: function() {
 		return (

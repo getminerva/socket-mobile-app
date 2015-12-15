@@ -1,28 +1,28 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Rtr = require('react-router');
-var Router = Rtr.Router;
-var Route = Rtr.Route;
-var Link = Rtr.Link;
-
-// COMPONENTS
-require('./js/components/SocketList');
-require('./js/components/DeviceList');
+// var React = require('react');
+// var ReactDOM = require('react-dom');
+var Router = require('react-router').Router;
+var Route = require('react-router').Route;
+var Link = require('react-router').Link;
 
 // VIEWS
-require('./views/HomeView');
-require('./views/BluetoothAddView');
+var HomeView = require('./views/HomeView.jsx');
+var BluetoothAddView = require('./views/BluetoothAddView.jsx');
+
+const App = React.createClass({
+	render: function() {
+		return (
+			<div id='app'>
+				{this.props.children}
+			</div>
+		);
+	}
+})
 
 ReactDOM.render((
 	<Router>
-		<Route path='/' component={HomeView}>
+		<Route path='/' component={App}>
+			<Route path='home' component={HomeView} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
-), document.getElementById('app'));
-// Needs <Link ></Link> instead of <a />'
-
-// var bff = new BFF();
-//
-// ReactDOM.render(
-// 	<HomeView listService={bff.socketService}/>, document.getElementById('app'));
+), document.body);

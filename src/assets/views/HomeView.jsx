@@ -1,16 +1,10 @@
-var React = require('react');
+// var React = require('react');
+var SocketList = require('../js/components/SocketList.jsx').SocketList;
 var Link = require('react-router').Link;
 
 var HomeView = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'listService': new BFF().socketService	// This shit's necessary
-		});
-	},
-	getInitialState: function() {
-		return ({
-			'tab': 0
-		});
+	defaultProps: {
+		'listService': new BFF().socketService	// This shit's necessary
 	},
 	render: function() {
 		// Get list from service

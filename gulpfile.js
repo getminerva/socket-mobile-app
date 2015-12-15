@@ -62,7 +62,7 @@ gulp.task('browserify-jsx', function() {
 	var b = browserify({
 		entries: [paths.src.ASSETS + 'index.js'] ,
 		debug: true,
-		// transform: [reactify],
+		transform: [reactify],
 		cache: {}, packageCache: {}, fullPaths: true
 	});
 
@@ -77,8 +77,8 @@ gulp.task('replace', function() {
 	return gulp.src(paths.dest.HTML)
 		.pipe(htmlreplace({
 			'jsx': {
-				src: paths.JSX_OUT,
-				tpl: '<script type="text/javascript" src="assets/js/%s"></script>'
+				src: paths.OUT,
+				tpl: '<script type="text/javascript" src="assets/%s"></script>'
 			}
 		}, {
 			keepBlockTags: true,
