@@ -45,3 +45,5 @@ var GroupService = function() {
 		}
 	];
 }
+
+module.exports = GroupService;

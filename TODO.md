@@ -1,20 +1,29 @@
 # TODO
 
-+ Turn the react script lib into a require
 + Add minification to the build process
 + Clean up the useless gulp tasks and solidify the build process
 + Implement watching
++ Replace ratchet components with ionic components
 
-+ Fix the JS Service issues - why ain't they loading??
 
 # WORKLOG
 
+**12.20.15**
+
++ Fix the JS Service issues - why ain't they loading??
+	- Nice, fixed the 'sockets not showing up' issue. It was because the HomeView getDefaultProps was mis-spelled as geDefaultProps.
+
 **12.14.2015**
 
++ Turn the react script lib into a require
 + Implemented routing
 + Removed the concating & switched to browserify - still fixed the window.component = React.create... global namespace polluting issue
 + Figured out JSX -> JS transpiling with Gulp so I can get this working
 	- sorta, using browserify's reactify plugin
+	+ current workflow:
+	$ gulp copy-html
+	$ gulp browserify-jsx
+	$ gulp replace
 
 **12.14.15 - indecent hours**
 

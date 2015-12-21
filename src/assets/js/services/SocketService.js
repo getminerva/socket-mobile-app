@@ -74,3 +74,5 @@ var SocketService = function() {
 		}
 	];
 }
+
+module.exports = SocketService;

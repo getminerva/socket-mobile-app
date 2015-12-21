@@ -1,3 +1,6 @@
+var SocketService = require('./SocketService.js');
+var GroupService = require('./GroupService.js');
+
 var BFF = function() {
 
 	var socketService;
@@ -16,3 +19,5 @@ var BFF = function() {
 
 	this.initialize();
 }
+
+module.exports = BFF;

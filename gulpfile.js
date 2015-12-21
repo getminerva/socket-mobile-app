@@ -72,6 +72,20 @@ gulp.task('browserify-jsx', function() {
 		.pipe(gulp.dest(paths.dest.ASSETS));
 });
 
+gulp.task('cr-html', function() {
+	return gulp.src(paths.src.HTML)
+		.pipe(htmlreplace({
+			'jsx': {
+				src: paths.OUT,
+				tpl: '<script type="text/javascript" src="assets/%s"></script>'
+			}
+		}, {
+			keepBlockTags: true,
+			resolvePaths: true
+		}))
+		.pipe(gulp.dest(paths.dest.DIR));
+})
+
 gulp.task('replace', function() {
 	// Replaces the jsx in index.html with a single concatenated js bundle
 	return gulp.src(paths.dest.HTML)

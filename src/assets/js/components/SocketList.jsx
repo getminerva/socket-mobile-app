@@ -1,4 +1,4 @@
-// var React = require('react');
+var React = require('react');
 
 var SocketItemIcons = React.createClass({
 	defaultProps: {
@@ -97,8 +97,8 @@ var SocketItem = React.createClass({
 });
 
 var SocketList = React.createClass({
-	defaultProps: {
-		'items': []
+	getDefaultProps: function() {
+		return ({'items': []});
 	},
 	render: function() {
 		// Map the items in props to the ul

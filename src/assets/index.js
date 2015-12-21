@@ -1,5 +1,5 @@
-// var React = require('react');
-// var ReactDOM = require('react-dom');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var Link = require('react-router').Link;
@@ -11,7 +11,7 @@ var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 const App = React.createClass({
 	render: function() {
 		return (
-			<div id='app'>
+			<div>
 				{this.props.children}
 			</div>
 		);
@@ -25,4 +25,4 @@ ReactDOM.render((
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
-), document.body);
+), document.getElementById('app'));
