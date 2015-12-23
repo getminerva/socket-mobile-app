@@ -4,7 +4,9 @@
 + Clean up the useless gulp tasks and solidify the build process
 + Implement watching
 + Replace ratchet components with ionic components
-
++ Reduce number of libs & use browserify
++ Implement bluetooth connectivity
++ Reorganize home screen/whatever
 
 # WORKLOG
 
