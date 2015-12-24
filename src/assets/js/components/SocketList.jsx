@@ -1,10 +1,12 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var SocketItemIcons = React.createClass({
 	defaultProps: {
 		'proximity': false,
 		'alarm': false,
 		'notification': false
+
 	},
 	render: function() {
 		var icp = 'ion icon ion-android-locate ';
@@ -69,7 +71,7 @@ var SocketItem = React.createClass({
 	componentDidMount: function() {
 		// Setup touch handlers
 		var opts = {}
-		var mc = new Hammer.Manager(this.getDOMNode());
+		var mc = new Hammer.Manager(ReactDOM.findDOMNode(this));
 
 		mc.add(new Hammer.Tap({event: 'dbl-tap', taps: 2}));
 		mc.add(new Hammer.Tap({event: 'sgl-tap'}));

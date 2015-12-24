@@ -84,7 +84,7 @@ gulp.task('cr-html', function() {
 			resolvePaths: true
 		}))
 		.pipe(gulp.dest(paths.dest.DIR));
-})
+});
 
 gulp.task('replace', function() {
 	// Replaces the jsx in index.html with a single concatenated js bundle

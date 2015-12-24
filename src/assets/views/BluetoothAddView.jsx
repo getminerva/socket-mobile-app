@@ -1,20 +1,37 @@
 var React = require('react');
-var Link = require('react-router').Link;
 
 var BluetoothAddView = React.createClass({
 	defaultProps: {
 		'listService': null		// This shit's necessary
 	},
+	scanForDevices: function() {
+		var devices = []
+
+		ble.scan([], 60, function(device) {
+			devices.push(device);
+		}, function(error) {
+			console.log('Unable to find devices.');
+		});
+
+	},
+	componentDidMount: function() {
+		// Attach the back button link
+		var backButton = document.getElementById('back-btn');
+		var scanButton = document.getElementById('scan-btn');
+
+		backButton.addEventListener('click', this.props.history.goBack, false);
+		scanButton.addEventListener('click', this.scanForDevices, false);
+	},
 	render: function() {
 		return (
 			<div>
 				<header className='bar bar-standard bar-nav'>
-					<Link to="/">
-						<span className='pull-left icon icon-left icon-nav'></span>
-					</Link>
+				<a id="back-btn">
+					<span className='pull-left icon icon-left icon-nav'></span>
+				</a>
 				</header>
 				<div className="content">
-					<button className="btn btn-positive btn-outlined">Tap</button>
+					<button id="scan-btn" className="btn btn-positive btn-outlined">Tap</button>
 					<p>to discover new devices.</p>
 				</div>
 			</div>

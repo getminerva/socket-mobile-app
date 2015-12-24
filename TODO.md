@@ -6,9 +6,13 @@
 + Replace ratchet components with ionic components
 + Reduce number of libs & use browserify
 + Implement bluetooth connectivity
-+ Reorganize home screen/whatever
++ Freeze the node_modules packages
++ Remove build folder from git tree
 
 # WORKLOG
+
+**12.24.2015**
++ Reorganize home screen/whatever
 
 **12.20.15**
 

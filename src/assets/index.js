@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
+var IndexRoute = require('react-router').IndexRoute;
 var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 
@@ -21,7 +22,7 @@ const App = React.createClass({
 ReactDOM.render((
 	<Router>
 		<Route path='/' component={App}>
-			<Route path='home' component={HomeView} />
+			<IndexRoute component={HomeView} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>

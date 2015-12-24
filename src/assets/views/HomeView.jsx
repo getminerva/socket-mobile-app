@@ -16,7 +16,7 @@ var HomeView = React.createClass({
 
 		if (this.props.listService) {
 			this.props.listService.getAll().done(function(sockets) {
-				console.log(sockets);
+				// console.log(sockets);
 				items = sockets;
 			});
 		}
