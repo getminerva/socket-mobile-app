@@ -1,5 +1,6 @@
 plugins
 platforms
 www
+hooks
 
 node_modules

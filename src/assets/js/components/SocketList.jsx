@@ -23,12 +23,14 @@ var SocketItemIcons = React.createClass({
 })
 
 var SocketItem = React.createClass({
-	defaultProps: {
-		'nickName': 'Sockrates',
-		'macId': '00:1a:2b:3c:',
-		'proximity': false,
-		'alarm': false,
-		'notification': false,
+	getDefaultProps: function() {
+		return ({
+			'nickName': 'undefined',
+			'macId': 'xx:xx:xx:xx',
+			'proximity': false,
+			'alarm': false,
+			'notification': false,
+		});
 	},
 	getInitialState: function() {
 		return ({
@@ -51,7 +53,7 @@ var SocketItem = React.createClass({
 		// TODO: Toggle brightness
 		console.log("Toggle brightness");
 
-		// BTLE Flow(
+		// BTLE Flow
 		ble.connect(this.props.macId, function(success) {
 			// On success, client & server data update flow
 			ble.write(this.props.macId, service_uuid, characteristic_uuid, data, function(success) {
@@ -62,7 +64,6 @@ var SocketItem = React.createClass({
 		}, function(error) {
 			alert("Error connecting to " + this.props.nickName + " :(");
 		});
-
 	},
 	handlePress: function(ev) {
 		// TODO: Go to individual page
@@ -108,6 +109,7 @@ var SocketList = React.createClass({
 			return (
 				<li className="table-view-cell">
 					<SocketItem
+						key={item.id}
 						nickName={item.nickName}
 						macId={item.macId}
 						proximity={item.proximity}

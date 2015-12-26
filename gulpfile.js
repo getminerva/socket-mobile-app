@@ -4,9 +4,8 @@ var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');		// For use with browserify, use gulp-react for other
-
-var concat = require('gulp-concat');
 var htmlreplace = require('gulp-html-replace');
+
 
 var paths = {
 	src: {
@@ -34,31 +33,12 @@ var paths = {
 	BROWSERIFY_OUT: 'bundle.js'
 };
 
-gulp.task('copy-lib', function() {
-	return gulp.src(paths.LIB)
-		.pipe(gulp.dest(paths.dest.LIB));
-});
-
 gulp.task('copy-services', function() {
 	return gulp.src(paths.src.SERVICES + '*.*')
 		.pipe(gulp.dest(paths.dest.JS));
-})
-
-gulp.task('copy-html', function() {
-	// Copies src html to the dest html
-	return gulp.src(paths.src.HTML)
-		.pipe(gulp.dest(paths.dest.DIR));
-})
-
-gulp.task('concat-jsx', function() {
-	// Concatenates all src jsx files into one bundled jsx file in paths.dest.jsx
-	return gulp.src(paths.src.JSX)
-		.pipe(concat(paths.JSX_OUT))
-		.pipe(gulp.dest(paths.dest.JSX));
 });
 
 gulp.task('browserify-jsx', function() {
-	// TODO
 	var b = browserify({
 		entries: [paths.src.ASSETS + 'index.js'] ,
 		debug: true,
@@ -86,32 +66,12 @@ gulp.task('cr-html', function() {
 		.pipe(gulp.dest(paths.dest.DIR));
 });
 
-gulp.task('replace', function() {
-	// Replaces the jsx in index.html with a single concatenated js bundle
-	return gulp.src(paths.dest.HTML)
-		.pipe(htmlreplace({
-			'jsx': {
-				src: paths.OUT,
-				tpl: '<script type="text/javascript" src="assets/%s"></script>'
-			}
-		}, {
-			keepBlockTags: true,
-			resolvePaths: true
-		}))
-		.pipe(gulp.dest(paths.dest.DIR));
+gulp.task('watch-html', function() {
+	// TODO
 });
 
-gulp.task('replace-jsx', function() {
-	// Replaces the jsx in index.html with a single concatenated jsx bundle
-	return gulp.src(paths.dest.HTML)
-		.pipe(htmlreplace({
-			'jsx': {
-				src: paths.JSX_OUT,
-				tpl: '<script type="text/babel" src="assets/js/%s"></script>'
-			}
-		}, {
-			keepBlockTags: true,
-			resolvePaths: true
-		}))
-		.pipe(gulp.dest(paths.dest.DIR));
+gulp.task('watch-js', function() {
+	// TODO
 });
+
+gulp.task('default', ['watch-html', 'watch-j']);
