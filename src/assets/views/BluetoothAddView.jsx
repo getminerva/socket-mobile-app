@@ -1,38 +1,101 @@
 var React = require('react');
 
+
+var DiscoveredItem = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'name': 'undefined',
+			'id': 'xx-xx-xx-xx-xx-xx'
+			'rssi': 0
+		});
+	},
+	render: function() {
+		return (
+			<li className='item'>
+				<h1>this.props.name</h1>
+				<span>this.props.id</span>
+			</li>
+		)
+	}
+})
+
 var BluetoothAddView = React.createClass({
-	defaultProps: {
-		'listService': null		// This shit's necessary
+	getInitialState: function() {
+		return ({
+			'devices': []
+		});
 	},
 	scanForDevices: function() {
-		var devices = []
+		console.log("Started scanning...");
+		// TODO
 
-		ble.scan([], 60, function(device) {
-			devices.push(device);
-		}, function(error) {
-			console.log('Unable to find devices.');
-		});
+		if (ble) {
+			if (ble.isEnabled()) {
+				var devices = this.state.devices
+				ble.startScan([], function(device) {
+					devices.push(device);
+				})
+			} else {
+				// TODO: Enable that shit
+			}
+		} else {
+			// Sorry, no support for BLE or it doesn't exist
+		}
+	},
+	stopScanForDevices: function() {
+		console.log('Stopped scanning');
+		// TODO
 
+		if (ble) {
+			// TODO
+			ble.stopScan(function() {
+				console.log("Finished")
+			});
+		} else {
+			// Sorry, no support for BLE or it doesn't exist
+		}
 	},
 	componentDidMount: function() {
 		// Attach the back button link
 		var backButton = document.getElementById('back-btn');
-		var scanButton = document.getElementById('scan-btn');
-
 		backButton.addEventListener('click', this.props.history.goBack, false);
-		scanButton.addEventListener('click', this.scanForDevices, false);
+
+		var scanButton = document.getElementById('scan-btn');
+		var that = this;
+		scanButton.addEventListener('click', function() {
+			if (scanButton.checked) {
+				that.scanForDevices();
+			} else {
+				that.stopScanForDevices();
+			}
+		});
 	},
 	render: function() {
+		var items = this.state.devices.map(function(dev) {
+			return (
+				<DiscoveredItem name=dev.name id=dev.id rssi=dev.rssi />
+			);
+		})
 		return (
 			<div>
-				<header className='bar bar-standard bar-nav'>
-				<a id="back-btn">
-					<span className='pull-left icon icon-left icon-nav'></span>
-				</a>
-				</header>
-				<div className="content">
-					<button id="scan-btn" className="btn btn-positive btn-outlined">Tap</button>
-					<p>to discover new devices.</p>
+				<div className='bar bar-header bar-light'>
+					<a id="back-btn" className='button button-clear icon-left ion-chevron-left'>Back</a>
+					<div className="title">Discover</div>
+				</div>
+				<div className="content has-header">
+					<ul className="list">
+						<li className='item item-toggle'>
+							Search for new devices
+							<label className="toggle">
+								<input id='scan-btn' type="checkbox" />
+								<div className="track">
+									<div className="handle"></div>
+								</div>
+							</label>
+						</li>
+						<li className='item item-divider'>Detected devices</li>
+						{items}
+					</ul>
 				</div>
 			</div>
 		);

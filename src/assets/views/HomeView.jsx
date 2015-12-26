@@ -23,13 +23,11 @@ var HomeView = React.createClass({
 
 		return (
 			<div>
-				<header className='bar bar-nav'>
-					<h1 className='title'>Socket</h1>
-					<Link to='/add'>
-						<span className='pull-right icon ion-plus'></span>
-					</Link>
-				</header>
-				<div className="content">
+				<div className='bar bar-header bar-light'>
+					<div className='title'>Socket</div>
+					<Link to='/add' className='button button-clear button-positive icon ion-plus'></Link>
+				</div>
+				<div className="content has-header">
 					<SocketList items={items} />
 				</div>
 			</div>

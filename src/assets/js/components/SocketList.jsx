@@ -107,7 +107,7 @@ var SocketList = React.createClass({
 		// Map the items in props to the ul
 		var listItems = this.props.items.map(function(item) {
 			return (
-				<li className="table-view-cell">
+				<li className="item">
 					<SocketItem
 						key={item.id}
 						nickName={item.nickName}
@@ -120,7 +120,7 @@ var SocketList = React.createClass({
 			);
 		});
 		return (
-			<ul className="table-view">
+			<ul className="list">
 				{ listItems }
 			</ul>
 		);
