@@ -11,6 +11,7 @@ var paths = {
 	src: {
 		DIR: 'src/',
 		ASSETS: 'src/assets/',
+		CSS: 'src/assets/css/',
 		COMPONENTS: 'src/assets/js/components/',
 		SERVICES: 'src/assets/js/services/',
 		VIEWS: 'src/views/',
@@ -21,6 +22,7 @@ var paths = {
 	dest: {
 		DIR: 'www/',
 		ASSETS: 'www/assets/',
+		CSS: 'www/assets/css/',
 		SERVICES: 'www/assets/js/services/',
 		JS: 'www/assets/js',
 		JSX: 'www/assets/js/',
@@ -38,6 +40,11 @@ gulp.task('copy-services', function() {
 		.pipe(gulp.dest(paths.dest.JS));
 });
 
+gulp.task('copy-css', function() {
+	return gulp.src(paths.src.CSS + 'index.css')
+		.pipe(gulp.dest(paths.dest.CSS));
+});
+
 gulp.task('browserify-jsx', function() {
 	var b = browserify({
 		entries: [paths.src.ASSETS + 'index.js'] ,
@@ -48,7 +55,6 @@ gulp.task('browserify-jsx', function() {
 
 	return b.bundle()
 		.pipe(source(paths.OUT))
-		.pipe(buffer())
 		.pipe(gulp.dest(paths.dest.ASSETS));
 });
 
@@ -67,11 +73,29 @@ gulp.task('cr-html', function() {
 });
 
 gulp.task('watch-html', function() {
-	// TODO
+	gulp.watch(paths.src.HTML, ['cr-html']);
+});
+
+gulp.task('watch-css', function() {
+	gulp.watch(paths.src.css + 'index.css', ['copy-css']);
 });
 
 gulp.task('watch-js', function() {
-	// TODO
+	var watcher = watchify(browserify({
+		entries: [paths.src.ASSETS + 'index.js'],
+		transform: [reactify],
+		debug: true,
+		cache: {}, packageCache: {}, fullPaths :true
+	}));
+
+	return watcher.on('update', function() {
+		watcher.bundle()
+			.pipe(source(paths.OUT))
+			.pipe(gulp.dest(paths.dest.ASSETS));
+		console.log('Updated JS build');
+	}).bundle()
+		.pipe(source(paths.OUT))
+		.pipe(gulp.dest(paths.dest.ASSETS));
 });
 
-gulp.task('default', ['watch-html', 'watch-j']);
+gulp.task('default', ['watch-html', 'watch-css', 'watch-js']);
