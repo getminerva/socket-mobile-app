@@ -1,15 +1,17 @@
 # TODO
 
 + Add minification to the build process
-+ Clean up the useless gulp tasks and solidify the build process
-+ Implement watching
-+ Replace ratchet components with ionic components
 + Reduce number of libs & use browserify
 + Implement bluetooth connectivity
-+ Freeze the node_modules packages
-+ Remove build folder from git tree
 
 # WORKLOG
+
+**12.26.2015**
++ Freeze the node_modules packages
++ Implement watching
++ Replace ratchet components with ionic components
++ Clean up the useless gulp tasks and solidify the build process
++ Remove build folder from git tree
 
 **12.24.2015**
 + Reorganize home screen/whatever
