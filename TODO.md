@@ -1,10 +1,18 @@
 # TODO
 
++ Add tabbed interface for groups + solos
++ Make view load the proper socket info
++ Add options screen
 + Add minification to the build process
 + Reduce number of libs & use browserify
 + Implement bluetooth connectivity
++ Reasearch best use of router...?
 
 # WORKLOG
+
+**12.27-28.2015**
++ Add full socket screen
++ Link socket-items with to their view pages
 
 **12.26.2015**
 + Freeze the node_modules packages
