@@ -1,11 +1,10 @@
 var React = require('react');
 
-
 var DiscoveredItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'name': 'undefined',
-			'id': 'xx-xx-xx-xx-xx-xx'
+			'id': 'xx-xx-xx-xx-xx-xx',
 			'rssi': 0
 		});
 	},
@@ -15,9 +14,9 @@ var DiscoveredItem = React.createClass({
 				<h1>this.props.name</h1>
 				<span>this.props.id</span>
 			</li>
-		)
+		);
 	}
-})
+});
 
 var BluetoothAddView = React.createClass({
 	getInitialState: function() {
@@ -73,9 +72,14 @@ var BluetoothAddView = React.createClass({
 	render: function() {
 		var items = this.state.devices.map(function(dev) {
 			return (
-				<DiscoveredItem name=dev.name id=dev.id rssi=dev.rssi />
+				<DiscoveredItem
+					name={dev.name}
+					id={dev.id}
+					rssi={dev.rssi}
+				/>
 			);
-		})
+		});
+
 		return (
 			<div>
 				<div className='bar bar-header bar-light'>
