@@ -28,7 +28,7 @@ var HomeView = React.createClass({
 					<Link to='/add' className='button button-clear button-positive icon ion-plus'></Link>
 				</div>
 				<div className="content has-header">
-					<SocketList items={items} />
+					<SocketList items={items} history={this.props.history}/>
 				</div>
 			</div>
 		);

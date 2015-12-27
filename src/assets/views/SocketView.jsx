@@ -75,6 +75,7 @@ var SocketViewLoader = React.createClass({
 	componentWillMount: function() {
 		// TODO: Load the socket information from the API
 		var ss = new BFF().socketService;
+		// console.log(this.props.params.socketId);
 		var sId = parseInt(this.props.params.socketId);
 
 		var that = this;
@@ -89,6 +90,7 @@ var SocketViewLoader = React.createClass({
 		return (
 			<SocketView
 				name={socket.name}
+				history={this.props.history}
 			/>
 		);
 	}

@@ -26,6 +26,7 @@ var SocketItemIcons = React.createClass({
 var SocketItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
+			'id': 0,
 			'nickName': 'undefined',
 			'macId': 'xx:xx:xx:xx',
 			'proximity': false,
@@ -67,8 +68,8 @@ var SocketItem = React.createClass({
 		});
 	},
 	handlePress: function(ev) {
-		// TODO: Go to individual page
 		console.log("Press brightness");
+		this.props.history.push('/socket/' + this.props.id);
 	},
 	componentDidMount: function() {
 		// Setup touch handlers
@@ -89,7 +90,7 @@ var SocketItem = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<h4>{ this.props.nickName }</h4>
+				<h4>{this.props.nickName}</h4>
 				<SocketItemIcons
 					proximity={this.props.proximity}
 					alarm={this.props.alarm}
@@ -102,20 +103,26 @@ var SocketItem = React.createClass({
 
 var SocketList = React.createClass({
 	getDefaultProps: function() {
-		return ({'items': []});
+		return ({
+			'items': [],
+			'history': null
+		});
 	},
 	render: function() {
 		// Map the items in props to the ul
+		var history = this.props.history;
 		var listItems = this.props.items.map(function(item) {
 			return (
 				<li className="item">
 					<SocketItem
 						key={item.id}
+						id={item.id}
 						nickName={item.nickName}
 						macId={item.macId}
 						proximity={item.proximity}
 						alarm={item.alarm}
 						notification={item.notification}
+						history={history}
 					/>
 				</li>
 			);
