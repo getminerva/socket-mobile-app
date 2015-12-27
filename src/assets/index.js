@@ -7,7 +7,7 @@ var Link = require('react-router').Link;
 
 // VIEWS
 var HomeView = require('./views/HomeView.jsx');
-var SocketView = require('./views/SocketView.jsx');
+var SocketViewLoader = require('./views/SocketView.jsx').SocketViewLoader;
 var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 
 const App = React.createClass({
@@ -24,7 +24,7 @@ ReactDOM.render((
 	<Router>
 		<Route path='/' component={App}>
 			<IndexRoute component={HomeView} />
-				<Route path='/socket/:id' component={SocketView} />
+				<Route path='/socket/:socketId' component={SocketViewLoader} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>

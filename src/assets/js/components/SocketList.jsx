@@ -2,11 +2,12 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var SocketItemIcons = React.createClass({
-	defaultProps: {
-		'proximity': false,
-		'alarm': false,
-		'notification': false
-
+	getDefaultProps: function() {
+		return ({
+			'proximity': false,
+			'alarm': false,
+			'notification': false
+		});
 	},
 	render: function() {
 		var icp = 'ion icon ion-android-locate ';
