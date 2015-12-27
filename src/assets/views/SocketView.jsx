@@ -5,11 +5,18 @@ var BFF = require('../js/services/BFF.js');
 var SocketView = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'name': 'undefined',
-			'uuid': 'xx:xx:xx:xx'
+			'uuid': 'xx-xx-xx-xx-xx-xx',
+			'macAddress': '00:00:00:00:00:00',
+			'nickName': 'undefined',
+			'rssi': 0,
+			'curBrightness': 50,
+			'proximity': false,
+			'alarm': false,
+			'notification': false
 		});
 	},
 	render: function() {
+
 		return (
 			<div>
 				<div className='bar bar-header bar-light'>
@@ -25,7 +32,7 @@ var SocketView = React.createClass({
 									<ul className='list'>
 										<label className="item item-input">
 											<input type="text"
-												value={this.props.name}
+												defaultValue={this.props.nickName}
 											/>
 										</label>
 										<li className='item'>
@@ -36,15 +43,15 @@ var SocketView = React.createClass({
 							</div>
 						</li>
 						<li className='item range range-positive'>
-							<i className='icon ion-ios-sunny-outline'></i>
-							<input type="range" name="brightness" min="0" max="100" value="33" />
-							<i className='icon ion-ios-sunny'></i>
+							<i className='icon ion-ios-lightbulb'></i>
+							<input type="range" name="brightness" min="0" max="100" defaultValue={this.props.curBrightness} />
+							<i className='icon ion-ios-lightbulb-outline'></i>
 						 </li>
 						<li className='item item-divider'></li>
 						<li className='item item-toggle'>
 							Proximity Sense
 							<label className="toggle">
-								<input type="checkbox" />
+								<input type="checkbox" defaultChecked={this.props.proximity}/>
 								<div className="track">
 									<div className="handle"></div>
 								</div>
@@ -68,28 +75,44 @@ var SocketViewLoader = React.createClass({
 	getInitialState: function() {
 		return ({
 			'socket': {
-				'name': 'undefined'
+				'id': 0,
+				'uuid': 'xx-xx-xx-xx-xx-xx',
+				'macAddress': '00:00:00:00:00:00',
+				'nickName': 'undefined',
+				'rssi': 0,
+				'curBrightness': 50,
+				'proximity': false,
+				'alarm': false,
+				'notification': false
 			}
 		});
 	},
 	componentWillMount: function() {
 		// TODO: Load the socket information from the API
 		var ss = new BFF().socketService;
-		// console.log(this.props.params.socketId);
 		var sId = parseInt(this.props.params.socketId);
+		// console.log(this.props.params.socketId);
 
 		var that = this;
 		ss.findById(sId).done(function(socket) {
+			console.log(socket);
 			that.setState({
 				socket: socket
 			})
-		})
+		});
 	},
 	render: function() {
-		var socket = this.state.socket;
+		var dev = this.state.socket;
 		return (
 			<SocketView
-				name={socket.name}
+				uuid={dev.uuid}
+				macAddress={dev.macAddress}
+				nickName={dev.nickName}
+				rssi={dev.rssi}
+				curBrightness={dev.curBrightness}
+				proximity={dev.proximity}
+				alarm={dev.alarm}
+				notification={dev.notification}
 				history={this.props.history}
 			/>
 		);
