@@ -111,11 +111,12 @@ var SocketList = React.createClass({
 	render: function() {
 		// Map the items in props to the ul
 		var history = this.props.history;
+		var key = 0;
 		var listItems = this.props.items.map(function(item) {
+			key += 1;
 			return (
-				<li className="item">
+				<li className="item" key={key}>
 					<SocketItem
-						key={item.id}
 						id={item.id}
 						nickName={item.nickName}
 						macId={item.macId}
