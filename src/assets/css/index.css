@@ -2,10 +2,18 @@ body {
 	height: 100vh;
 }
 
+li.item-clickable {
+	transition: background-color 0.2s;
+}
+
+li.item-clickable:active {
+	background-color: #eee;
+}
+
 .icon-active {
-	color: #777;
+	color: #555;
 }
 
 .icon-inactive {
-	color: #ddd;
+	color: #bbb;
 }
