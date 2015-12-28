@@ -52,17 +52,6 @@ var SocketView = React.createClass({
 						/>
 						<li className='item item-divider'></li>
 						<Toggle color='energized'>Proximity Sense</Toggle>
-						{
-						// <li className='item item-toggle'>
-						// 	Proximity Sense
-						// 	<label className="toggle toggle-energized">
-						// 		<input type="checkbox" defaultChecked={this.props.proximity}/>
-						// 		<div className="track">
-						// 			<div className="handle"></div>
-						// 		</div>
-						// 	</label>
-						// </li>
-						}
 					</ul>
 				</div>
 			</div>
