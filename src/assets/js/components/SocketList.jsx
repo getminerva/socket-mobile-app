@@ -115,7 +115,7 @@ var SocketList = React.createClass({
 		var listItems = this.props.items.map(function(item) {
 			key += 1;
 			return (
-				<li className="item" key={key}>
+				<li className="item item-clickable" key={key}>
 					<SocketItem
 						id={item.id}
 						nickName={item.nickName}
