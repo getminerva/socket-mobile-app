@@ -1,4 +1,5 @@
 var React = require('react');
+var BackButton = require('./Utilities.jsx').BackButton;
 
 var DiscoveredItem = React.createClass({
 	getDefaultProps: function() {
@@ -55,10 +56,6 @@ var BluetoothAddView = React.createClass({
 		}
 	},
 	componentDidMount: function() {
-		// Attach the back button link
-		var backButton = document.getElementById('back-btn');
-		backButton.addEventListener('click', this.props.history.goBack, false);
-
 		var scanButton = document.getElementById('scan-btn');
 		var that = this;
 		scanButton.addEventListener('click', function() {
@@ -83,7 +80,7 @@ var BluetoothAddView = React.createClass({
 		return (
 			<div>
 				<div className='bar bar-header bar-light'>
-					<a id="back-btn" className='button button-clear icon-left ion-chevron-left'>Back</a>
+					<BackButton history={this.props.history}>Cancel</BackButton>
 					<div className="title">Discover</div>
 				</div>
 				<div className="content has-header">

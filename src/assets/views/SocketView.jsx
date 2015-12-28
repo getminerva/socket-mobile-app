@@ -23,7 +23,7 @@ var SocketView = React.createClass({
 		return (
 			<div>
 				<div className='bar bar-header bar-light'>
-					<BackButton history={this.props.history}/>
+					<BackButton history={this.props.history}>Back</BackButton>
 				</div>
 				<div className='content has-header'>
 					<ul className='list'>

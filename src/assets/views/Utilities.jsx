@@ -13,7 +13,7 @@ var BackButton = React.createClass({
 	},
 	render: function() {
 		return (
-			<a className='button button-clear button-return icon-left ion-chevron-left'></a>
+			<a className='button button-clear button-return icon-left ion-chevron-left'>{this.props.children}</a>
 		);
 	}
 });
