@@ -12,12 +12,13 @@ var Toggle = React.createClass({
 		});
 	},
 	render: function() {
-
 		return (
 			<div className='item item-toggle'>
 				{this.props.children}
 				<label className={'toggle toggle-' + this.props.color}>
-					<input type="checkbox" defaultChecked={this.state.checked}/>
+					<input type="checkbox"
+						defaultChecked={this.state.checked}
+						onChange={this.props.onChange}/>
 					<div className="track">
 						<div className="handle"></div>
 					</div>
@@ -57,6 +58,7 @@ var Range = React.createClass({
 					min="0"
 					max="100"
 					defaultValue={this.state.curValue}
+					onChange={this.props.onChange}
 				/>
 				{rightIcon}
 			 </label>

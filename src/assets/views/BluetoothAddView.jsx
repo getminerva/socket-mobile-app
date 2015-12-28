@@ -1,5 +1,6 @@
 var React = require('react');
 var BackButton = require('./Utilities.jsx').BackButton;
+var Toggle = require('../js/components/Common.jsx').Toggle;
 
 var DiscoveredItem = React.createClass({
 	getDefaultProps: function() {
@@ -55,16 +56,13 @@ var BluetoothAddView = React.createClass({
 			// Sorry, no support for BLE or it doesn't exist
 		}
 	},
-	componentDidMount: function() {
-		var scanButton = document.getElementById('scan-btn');
-		var that = this;
-		scanButton.addEventListener('click', function() {
-			if (scanButton.checked) {
-				that.scanForDevices();
-			} else {
-				that.stopScanForDevices();
-			}
-		});
+	handleChange: function(ev) {
+		// console.log(ev);
+		if (ev.target.checked) {
+			this.scanForDevices();
+		} else {
+			this.stopScanForDevices();
+		}
 	},
 	render: function() {
 		var items = this.state.devices.map(function(dev) {
@@ -85,15 +83,10 @@ var BluetoothAddView = React.createClass({
 				</div>
 				<div className="content has-header">
 					<ul className="list">
-						<li className='item item-toggle'>
-							Search for new devices
-							<label className="toggle">
-								<input id='scan-btn' type="checkbox" />
-								<div className="track">
-									<div className="handle"></div>
-								</div>
-							</label>
-						</li>
+						<Toggle
+							color='energized'
+							onChange={this.handleChange}>Scan for new Devices
+						</Toggle>
 						<li className='item item-divider'>Detected devices</li>
 						{items}
 					</ul>
