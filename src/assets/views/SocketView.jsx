@@ -1,6 +1,9 @@
 var React = require('react');
 var BackButton = require('./Utilities.jsx').BackButton;
+var Range = require('../js/components/Common.jsx').Range;
+var Toggle = require('../js/components/Common.jsx').Toggle;
 var BFF = require('../js/services/BFF.js');
+
 
 var SocketView = React.createClass({
 	getDefaultProps: function() {
@@ -42,15 +45,22 @@ var SocketView = React.createClass({
 								</div>
 							</div>
 						</li>
-						<li className='item range range-positive'>
-							<i className='icon ion-ios-lightbulb'></i>
-							<input type="range" name="brightness" min="0" max="100" defaultValue={this.props.curBrightness} />
-							<i className='icon ion-ios-lightbulb-outline'></i>
-						 </li>
+						{
+						// <li className='item range range-energized'>
+						// 	<i className='icon ion-ios-lightbulb'></i>
+						// 	<input type="range" name="brightness" min="0" max="100" defaultValue={this.props.curBrightness} />
+						// 	<i className='icon ion-ios-lightbulb-outline'></i>
+						// </li>
+						}
+						<Range
+							color='range-energized'
+							leftIcon='ion-ios-lightbulb'
+							rightIcon='ion-ios-lightbulb-outline'
+						/>
 						<li className='item item-divider'></li>
 						<li className='item item-toggle'>
 							Proximity Sense
-							<label className="toggle">
+							<label className="toggle toggle-energized">
 								<input type="checkbox" defaultChecked={this.props.proximity}/>
 								<div className="track">
 									<div className="handle"></div>
@@ -95,7 +105,7 @@ var SocketViewLoader = React.createClass({
 
 		var that = this;
 		ss.findById(sId).done(function(socket) {
-			console.log(socket);
+			// console.log(socket);
 			that.setState({
 				socket: socket
 			})
