@@ -45,28 +45,24 @@ var SocketView = React.createClass({
 								</div>
 							</div>
 						</li>
-						{
-						// <li className='item range range-energized'>
-						// 	<i className='icon ion-ios-lightbulb'></i>
-						// 	<input type="range" name="brightness" min="0" max="100" defaultValue={this.props.curBrightness} />
-						// 	<i className='icon ion-ios-lightbulb-outline'></i>
-						// </li>
-						}
 						<Range
-							color='range-energized'
+							color='energized'
 							leftIcon='ion-ios-lightbulb'
 							rightIcon='ion-ios-lightbulb-outline'
 						/>
 						<li className='item item-divider'></li>
-						<li className='item item-toggle'>
-							Proximity Sense
-							<label className="toggle toggle-energized">
-								<input type="checkbox" defaultChecked={this.props.proximity}/>
-								<div className="track">
-									<div className="handle"></div>
-								</div>
-							</label>
-						</li>
+						<Toggle color='energized'>Proximity Sense</Toggle>
+						{
+						// <li className='item item-toggle'>
+						// 	Proximity Sense
+						// 	<label className="toggle toggle-energized">
+						// 		<input type="checkbox" defaultChecked={this.props.proximity}/>
+						// 		<div className="track">
+						// 			<div className="handle"></div>
+						// 		</div>
+						// 	</label>
+						// </li>
+						}
 					</ul>
 				</div>
 			</div>
