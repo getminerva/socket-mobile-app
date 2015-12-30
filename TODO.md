@@ -1,7 +1,9 @@
 # TODO
 
++ Change jQ deferreds to HTML5 promises
++ Distribute cordova APKs
++ Design & build a login system
 + Add tabbed interface for groups + solos
-+ Make view load the proper socket info
 + Add options screen
 + Add minification to the build process
 + Reduce number of libs & use browserify
@@ -10,7 +12,16 @@
 
 # WORKLOG
 
+**12.30.2015**
++ Implement setBrightness and setProximity using HTML5 promises in SocketService.
++ Implement brightness and proximity editing in the socket view.
++ Implement a proper socket nickname display/edit input
+
+**12.29.2015**
++ Fix some state-linkage issues in Common
+
 **12.27-28.2015**
++ Make view load the proper socket info [sorta]
 + Add full socket screen
 + Link socket-items with to their view pages
 
