@@ -7,19 +7,17 @@ var SocketList = require('../js/components/SocketList.jsx').SocketList;
 var HomeView = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'listService': new BFF().socketService	// This shit's necessary
+			'service': new BFF().socketService	// This shit's necessary
 		});
 	},
 	render: function() {
 		// Get list from service
 		var items = [];
 
-		if (this.props.listService) {
-			this.props.listService.getAll().done(function(sockets) {
-				// console.log(sockets);
-				items = sockets;
-			});
-		}
+		this.props.service.getAll().done(function(sockets) {
+			// console.log(sockets);
+			items = sockets;
+		});
 
 		return (
 			<div>
