@@ -41,6 +41,64 @@ var SocketService = function() {
 		return;
 	}
 
+	// FUNCTIONAL METHODS
+	this.setBrightness = function(id, brightness) {
+		// var deferred = $.Deferred();
+		// var promise = deferred.promise();
+		var promise = new Promise(function(resolve, reject) {
+			// Get Socket
+			var socket = null;
+			var l = sockets.length;
+			for (var i = 0; i < l; i++) {
+				if (sockets[i].id === id) {
+					socket = sockets[i];
+					break;
+				}
+			}
+			// Set brightness
+			brightness = (brightness > 100) ? 100 : brightness;
+			brightness = (brightness < 0) ? 0 : brightness;
+
+			socket.curBrightness = brightness;
+			var success = true;
+
+			if (success) {
+				resolve(socket);
+			} else {
+				reject(Error('Could not change socket brightness'));
+			}
+		});
+
+		return promise;
+	}
+
+	this.setProximity = function(id, state) {
+		var promise = new Promise(function(resolve, reject) {
+			// Get Socket
+			var socket = null;
+			var l = sockets.length;
+			for (var i = 0; i < l; i++) {
+				if (sockets[i].id === id) {
+					socket = sockets[i];
+					break;
+				}
+			}
+			// Set state
+			if (state==true || state==false) {
+				socket.proximity = state;
+			}
+
+			var success = true;
+			if (success) {
+				resolve(socket);
+			} else {
+				reject(Error('Could not change socket\'s proximity feature.'));
+			}
+		});
+
+		return promise;
+	}
+
 	sockets = [
 		{
 			'id': 0,
