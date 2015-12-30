@@ -7,7 +7,7 @@ var Link = require('react-router').Link;
 
 // VIEWS
 var HomeView = require('./views/HomeView.jsx');
-var SocketViewLoader = require('./views/SocketView.jsx').SocketViewLoader;
+var SocketView = require('./views/SocketView.jsx').SocketView;
 var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 
 const App = React.createClass({
@@ -18,13 +18,15 @@ const App = React.createClass({
 			</div>
 		);
 	}
-})
+});
+
+// CORDOVA BINDINGS
 
 ReactDOM.render((
 	<Router>
 		<Route path='/' component={App}>
 			<IndexRoute component={HomeView} />
-				<Route path='/socket/:socketId' component={SocketViewLoader} />
+				<Route path='socket/:socketId' component={SocketView} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
