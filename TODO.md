@@ -1,5 +1,8 @@
 # TODO
 
++ Implement the SocketItem state indicator
++ Implement the SocketItem Toggling/Touch-slide
++ Change headers to yellow/energized
 + Change jQ deferreds to HTML5 promises
 + Distribute cordova APKs
 + Design & build a login system
