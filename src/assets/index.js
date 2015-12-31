@@ -10,6 +10,7 @@ var HomeView = require('./views/HomeView.jsx');
 var SocketView = require('./views/SocketView.jsx').SocketView;
 var LoginView = require('./views/LoginView.jsx');
 var RegisterView = require('./views/RegisterView.jsx');
+var OptionsView = require('./views/OptionsView.jsx');
 var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 
 // services
@@ -40,6 +41,7 @@ ReactDOM.render((
 			<Route path='register' component={RegisterView} />
 			<IndexRoute component={HomeView} onEnter={requireAuth}/>
 				<Route path='socket/:socketId' component={SocketView} />
+			<Route path='options' component={OptionsView} onEnter={requireAuth} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
