@@ -18,6 +18,22 @@ var BackButton = React.createClass({
 	}
 });
 
+var Header = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'color': 'light'
+		});
+	},
+	render: function() {
+		return (
+			<div className={'bar bar-header bar-' + this.props.color}>
+				{this.props.children}
+			</div>
+		);
+	}
+})
+
 module.exports = {
-	BackButton: BackButton
+	BackButton: BackButton,
+	Header: Header
 }

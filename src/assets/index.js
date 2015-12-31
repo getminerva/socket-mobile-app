@@ -8,7 +8,13 @@ var Link = require('react-router').Link;
 // VIEWS
 var HomeView = require('./views/HomeView.jsx');
 var SocketView = require('./views/SocketView.jsx').SocketView;
+var LoginView = require('./views/LoginView.jsx');
+var RegisterView = require('./views/RegisterView.jsx');
+var OptionsView = require('./views/OptionsView.jsx');
 var BluetoothAddView = require('./views/BluetoothAddView.jsx');
+
+// services
+var BFF = require('./js/services/BFF.js');
 
 const App = React.createClass({
 	render: function() {
@@ -21,12 +27,21 @@ const App = React.createClass({
 });
 
 // CORDOVA BINDINGS
+var requireAuth = function(nextState, replaceState) {
+	var bff = new BFF();
+	if (!bff.loggedIn()) {
+		replaceState({ nextPathName : nextState.location.pathname}, '/login');
+	}
+}
 
 ReactDOM.render((
 	<Router>
 		<Route path='/' component={App}>
-			<IndexRoute component={HomeView} />
+			<Route path='login' component={LoginView} />
+			<Route path='register' component={RegisterView} />
+			<IndexRoute component={HomeView} onEnter={requireAuth}/>
 				<Route path='socket/:socketId' component={SocketView} />
+			<Route path='options' component={OptionsView} onEnter={requireAuth} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
