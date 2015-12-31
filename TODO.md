@@ -1,19 +1,27 @@
 # TODO
 
++ Complete registration flow
++ Add session service (maybe) and a session verification with APIs
++ Add transitions
++ Change onclick handlers to touchstarts
++ Change (some) headers to yellow/energized
 + Implement the SocketItem state indicator
 + Implement the SocketItem Toggling/Touch-slide
-+ Change headers to yellow/energized
 + Change jQ deferreds to HTML5 promises
 + Distribute cordova APKs
-+ Design & build a login system
 + Add tabbed interface for groups + solos
-+ Add options screen
 + Add minification to the build process
 + Reduce number of libs & use browserify
 + Implement bluetooth connectivity
-+ Reasearch best use of router...?
++ Research best use of router...?
 
 # WORKLOG
+
+**12.30-31.2015**
++ Design & build a login system
++ Add options screen
++ Change (some) headers to yellow/energized
++ Change (some) jQ deferreds to HTML5 promises
 
 **12.30.2015**
 + Implement setBrightness and setProximity using HTML5 promises in SocketService.
