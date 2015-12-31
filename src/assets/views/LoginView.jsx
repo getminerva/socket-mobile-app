@@ -6,7 +6,7 @@ var LoginView = React.createClass({
 		return ({
 			'authService': new BFF()
 		});
-	}
+	},
 	getInitialState: function() {
 		return ({
 			'error': false,
@@ -25,7 +25,7 @@ var LoginView = React.createClass({
 		var uname = document.querySelector('.input-user-name').value;
 		var pw = document.querySelector('.input-pass-word').value;
 		// console.log(uname, pw);
-		this.state.service.login(uname, pw, this.updateAuth);
+		this.props.authService.login(uname, pw, this.updateAuth);
 	},
 	handleRegister: function(ev) {
 		// [TODO] push to registration flow but with the given info
