@@ -20,6 +20,53 @@ var BFF = function() {
 		return this;
 	}
 
+	// AUTHENTICATION
+
+	this.login = function(uname, pw, cb) {
+		cb = arguments[arguments.length - 1];
+		if (localStorage.token) {
+			if (cb) {
+				cb(true);
+			}
+			this.onChange(true);
+			return ;
+		}
+		var that = this;
+		this.userService.login(uname, pw).then(function(result) {
+			localStorage.token = result.token;
+			if (cb) {
+				cb(true);
+			}
+			that.onChange(true);
+		}, function(error) {
+			console.log(error);
+			if (cb) {
+				cb(false);
+			}
+			that.onChange(false);
+		});
+	}
+
+	this.logout = function(cb) {
+		delete localStorage.token;
+		if (cb) {
+			cb(false);
+		}
+		this.onChange(false);
+	}
+
+	this.getSessionToken = function() {
+		return localStorage.token;
+	}
+
+	this.loggedIn = function() {
+		return !!localStorage.token;
+	}
+
+	this.onChange = function() {
+		// Meh
+	}
+
 	this.initialize();
 }
 

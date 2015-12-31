@@ -28,7 +28,7 @@ var UserService = function() {
 		var promise = new Promise(function(resolve, reject) {
 			var user = null;
 
-			for (var i=0; i < user.length; i++) {
+			for (var i=0; i < users.length; i++) {
 				if (users[i].userName = uname) {
 					user = users[i];
 					break;
@@ -41,7 +41,8 @@ var UserService = function() {
 				reject(Error("Cannot find user with usernam '" + uname + "'"));
 			}
 		});
-		return promise
+
+		return promise;
 	}
 
 	this.getAllUsers = function() {
@@ -51,44 +52,31 @@ var UserService = function() {
 		return promise;
 	}
 
-	this.registerUser = function(userInfo) {
+	this.createUser = function(userInfo) {
 		// TODO: Some data verification
 	}
 
 	this.login = function(uname, pw) {
+		var that = this;
 		var promise = new Promise(function(resolve, reject) {
 			// hash & salt and Compare the uname and pw
 			var user = null;
 
 			var ErrorMsg = null;
-			this.findByUserName(uname).then(function(userData) {
-				user = userData;
-			}, function(error) {
-				ErrorMsg = error;
-			});
-
-			if (user != null) {
-				if (bcrypt.compareSync(pw, user.passWordHash)) {
-					// Start new Session
+			that.findByUserName(uname).then(function(userData) {
+				if (bcrypt.compareSync(pw, userData.passWordHash)) {
 					resolve({
-						'authenticated': true,
-						'token': Math.random().toString(36).substring(7);
+						'token': Math.random().toString(36).substring(7)
 					});
 				} else {
-					reject({
-						'authenticated': false
-					});
+					reject("Wrong password.");
 				}
-			} else {
-				reject(ErrorMsg);
-			};
+			}, function(error) {
+				reject(error);
+			});
 		});
 
 		return promise;
-	}
-
-	this.logout = function() {
-
 	}
 
 	users = [
