@@ -32,9 +32,14 @@ var LoginView = React.createClass({
 		this.props.history.push('/register');
 	},
 	componentWillMount: function() {
-		var authService = this.props.authService
+		var authService = this.props.authService;
 		this.setState({'loggedIn': authService.loggedIn()});
 		authService.onChange = this.updateAuth;
+	},
+	componentDidMount: function() {
+		document.querySelector('.button-register').addEventListener('touchstart', this.handleRegister);
+		document.querySelector('.button-login').addEventListener('touchstart', this.handleLogin);
+
 	},
 	render: function() {
 		return (
@@ -55,13 +60,11 @@ var LoginView = React.createClass({
 				<div className='row'>
 					<div className='col col-50'>
 						<button
-							className='button button-block button-energized'
-							onClick={this.handleRegister}>Register</button>
+							className='button button-block button-energized button-register'>Register</button>
 					</div>
 					<div className='col col-50'>
 						<button
-							className='button button-block button-energized'
-							onClick={this.handleLogin}>Login</button>
+							className='button button-block button-energized button-login'>Login</button>
 					</div>
 				</div>
 			</div>
