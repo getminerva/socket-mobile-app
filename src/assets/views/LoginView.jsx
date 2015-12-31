@@ -1,23 +1,16 @@
 var React = require('React');
-
 var BFF = require('../js/services/BFF.js');
 
-var RegisterView = React.createClass({
-	render: function() {
-		return (
-			<div className='content'>
-			</div>
-		);
-	}
-});
-
 var LoginView = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'authService': new BFF()
+		});
+	}
 	getInitialState: function() {
-		var service = new BFF();
 		return ({
 			'error': false,
-			'service': service,
-			'loggedIn':  service.loggedIn()
+			'loggedIn': false
 		});
 	},
 	updateAuth: function(loggedIn) {
@@ -36,9 +29,12 @@ var LoginView = React.createClass({
 	},
 	handleRegister: function(ev) {
 		// [TODO] push to registration flow but with the given info
+		this.props.history.push('/register');
 	},
 	componentWillMount: function() {
-		this.state.service.onChange = this.updateAuth;
+		var authService = this.props.authService
+		this.setState({'loggedIn': authService.loggedIn()});
+		authService.onChange = this.updateAuth;
 	},
 	render: function() {
 		return (
@@ -58,7 +54,9 @@ var LoginView = React.createClass({
 				</div>
 				<div className='row'>
 					<div className='col col-50'>
-						<button className='button button-block button-energized'>Register</button>
+						<button
+							className='button button-block button-energized'
+							onClick={this.handleRegister}>Register</button>
 					</div>
 					<div className='col col-50'>
 						<button
