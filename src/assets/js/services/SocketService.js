@@ -22,7 +22,7 @@ var SocketService = function() {
 	}
 
 	this.getAll = function() {
-		var promise = new new Promise(function(resolve, reject) {
+		var promise = new Promise(function(resolve, reject) {
 			resolve(sockets);
 		});
 		return promise;
@@ -106,6 +106,7 @@ var SocketService = function() {
 			'nickName': 'undefined',
 			'rssi': 0,
 			'curBrightness': 50,
+			'curBrightness': 0,
 			'proximity': false,
 			'alarm': false,
 			'notification': false
@@ -117,6 +118,7 @@ var SocketService = function() {
 			'nickName': 'Sockrates',
 			'rssi': 0,
 			'curBrightness': 0,
+			'curBrightness': 75,
 			'proximity': true,
 			'alarm': false,
 			'notification': false
@@ -128,6 +130,7 @@ var SocketService = function() {
 			'nickName': 'Sockatoa',
 			'rssi': 0,
 			'curBrightness': 75,
+			'curBrightness': 0,
 			'proximity': false,
 			'alarm': false,
 			'notification': false
@@ -139,6 +142,7 @@ var SocketService = function() {
 			'nickName': 'Sockiavelli',
 			'rssi': 0,
 			'curBrightness': 100,
+			'curBrightness': 0,
 			'proximity': false,
 			'alarm': false,
 			'notification': false

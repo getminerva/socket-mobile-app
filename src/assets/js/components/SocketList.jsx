@@ -9,8 +9,9 @@ var SocketStateIndicator = React.createClass({
 		});
 	},
 	render: function() {
+		var icon = 'icon ion-record ';
 		return (
-			<i className={'icon ion-record ' + (this.props.on ) ? 'state-on': 'state-off'}></i>
+			<i className={ (this.props.on) ? icon + 'state-on': icon + 'state-off'}></i>
 		);
 	}
 });
@@ -24,9 +25,9 @@ var SocketItemIcons = React.createClass({
 		});
 	},
 	render: function() {
-		var icp = 'ion icon ion-android-locate ';
-		var ica = 'ion icon ion-android-alarm-clock ';
-		var icn = 'ion icon ion-android-notifications ';
+		var icp = 'icon ion-android-locate ';
+		var ica = 'icon ion-android-alarm-clock ';
+		var icn = 'icon ion-android-notifications ';
 		return (
 			<div>
 				<span className={this.props.proximity ? icp + 'icon-active' : icp + 'icon-inactive'}></span>
@@ -35,7 +36,7 @@ var SocketItemIcons = React.createClass({
 			</div>
 		);
 	}
-})
+});
 
 var SocketItem = React.createClass({
 	getDefaultProps: function() {
@@ -68,39 +69,47 @@ var SocketItem = React.createClass({
 	handleDblTap: function(ev) {
 		// TODO: Toggle brightness
 		console.log("Toggle brightness");
-		var newBrightness = this.state.prvBrightness;
+		var oldBrightness = this.state.curBrightness;
+		var newBrightness = (this.state.curBrightness > 0 ) ? 0 : this.state.prvBrightness;
 
 		// BTLE Flow
-		ble.connect(this.props.macId, function(success) {
-			// On success, client & server data update flow
-			ble.write(this.props.macId, service_uuid, characteristic_uuid, data, function(success) {
-
-			}, function(failure) {
-				alert("Error writing to " + this.props.nickName + ".");
-			});
-		}, function(error) {
-			alert("Error connecting to " + this.props.nickName + " :(");
-		});
+		// ble.connect(this.props.macId, function(success) {
+		// 	// On success, client & server data update flow
+		// 	ble.write(this.props.macId, service_uuid, characteristic_uuid, data, function(success) {
+		//
+		// 	}, function(failure) {
+		// 		alert("Error writing to " + this.props.nickName + ".");
+		// 	});
+		// }, function(error) {
+		// 	alert("Error connecting to " + this.props.nickName + " :(");
+		// });
 
 		// Or Update via web
 
 		// Update backend
+		// this.context.socketService.setBrightness(newBrightness).then(function(success) {
+		// 	// Update view
+		// 	this.setState({'curBrightness': newBrightness});
+		// 	this.setState({'prvBrightness': oldBrightness});
+		// }, function(error) {
+		// 	console.log(error);
+		// });
 
-		// Update view
-		brightness = th
-		this.setState({'curBrightness': curBrightness});
+		this.setState({'curBrightness': newBrightness});
+		this.setState({'prvBrightness': oldBrightness});
 	},
 	handlePress: function(ev) {
 		console.log("Press brightness");
 		this.props.history.push('/socket/' + this.props.id);
 	},
-	componentWillMount: function() {
+	componentDidMount: function() {
 		// Fetch Socket Info
-		var dataService = new BFF();
+		var dataService = new BFF().socketService;
 
+		var that = this;
 		dataService.findById(this.props.id).then(function(socketInfo) {
-			this.setState({'curBrightness': socketInfo.curBrightness});
-			this.setState({'prvBrightness': socketInfo.prvBrightness});
+			that.setState({'curBrightness': socketInfo.curBrightness});
+			that.setState({'prvBrightness': socketInfo.prvBrightness});
 		}, function(error) {
 			console.log(error);
 		});
@@ -123,13 +132,15 @@ var SocketItem = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className='item-icon-left'>
+			<div>
 				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
-				<h4>{this.props.nickName}</h4>
+				<h4>
+					{this.props.nickName}
+				</h4>
 				<SocketItemIcons
-					proximity={this.props.proximity}
-					alarm={this.props.alarm}
-					notification={this.props.notification}
+				proximity={this.props.proximity}
+				alarm={this.props.alarm}
+				notification={this.props.notification}
 				/>
 			</div>
 		)
