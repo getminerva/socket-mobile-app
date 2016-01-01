@@ -4,29 +4,28 @@ var SocketService = function() {
 
 	this.initialize = function() {
 		// No Initialization required
-		var deferred = $.Deferred();
-		deferred.resolve();
-		return deferred.promise();
+		var promise = new Promise(function(resolve, reject) {
+			resolve();
+		});
+		return promise;
 	}
 
 	this.findById = function(id) {
-		var deferred = $.Deferred();
-		var socket = null;
-		var l = sockets.length;
-		for (var i = 0; i < l; i++) {
-			if (sockets[i].id === id) {
-				socket = sockets[i];
-				break;
+		var promise = new Promise(function(resolve, reject) {
+			if (id < 0 || sockets[sockets.length-1].id < id) {
+				reject("Invalid ID.");
+			} else {
+				resolve(sockets[id]);
 			}
-		}
-		deferred.resolve(socket);
-		return deferred.promise();
+		});
+		return promise;
 	}
 
 	this.getAll = function() {
-		var deferred = $.Deferred();
-		deferred.resolve(sockets);
-		return deferred.promise();
+		var promise = new new Promise(function(resolve, reject) {
+			resolve(sockets);
+		});
+		return promise;
 	}
 
 	this.createSocket = function(socketInfo) {
