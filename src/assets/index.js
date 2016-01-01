@@ -17,6 +17,21 @@ var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 var BFF = require('./js/services/BFF.js');
 
 const App = React.createClass({
+	childContextTypes: {
+		'router': React.PropTypes.object,
+		'bff': React.PropTypes.object
+	},
+	getDefaultProps: function() {
+		return ({
+			'bff': new BFF()
+		});
+	},
+	getChildContext: function() {
+		return {
+			'router': this.props.history,
+			'bff': this.props.bff
+		}
+	},
 	render: function() {
 		return (
 			<div>
