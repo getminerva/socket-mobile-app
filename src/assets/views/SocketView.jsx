@@ -1,10 +1,10 @@
 var React = require('react');
+var Header = require('./Utilities.jsx').Header;
 var BackButton = require('./Utilities.jsx').BackButton;
 var Range = require('../js/components/Common.jsx').Range;
 var Toggle = require('../js/components/Common.jsx').Toggle;
 var TextInputItem = require('../js/components/Common.jsx').TextInputItem;
 var BFF = require('../js/services/BFF.js');
-
 
 var SocketView = React.createClass({
 	getDefaultProps: function() {
@@ -99,9 +99,9 @@ var SocketView = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<div className='bar bar-header bar-light'>
+				<Header>
 					<BackButton history={this.props.history}>Back</BackButton>
-				</div>
+				</Header>
 				<div className='content has-header'>
 					<ul className='list'>
 						<li className='item'>
