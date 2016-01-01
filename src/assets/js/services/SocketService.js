@@ -117,7 +117,7 @@ var SocketService = function() {
 			'macAddress': '00:00:00:00:00:00',
 			'nickName': 'Sockrates',
 			'rssi': 0,
-			'curBrightness': 50,
+			'curBrightness': 0,
 			'proximity': true,
 			'alarm': false,
 			'notification': false
@@ -128,7 +128,7 @@ var SocketService = function() {
 			'macAddress': '00:00:00:00:00:00',
 			'nickName': 'Sockatoa',
 			'rssi': 0,
-			'curBrightness': 50,
+			'curBrightness': 75,
 			'proximity': false,
 			'alarm': false,
 			'notification': false
@@ -139,7 +139,7 @@ var SocketService = function() {
 			'macAddress': '00:00:00:00:00:00',
 			'nickName': 'Sockiavelli',
 			'rssi': 0,
-			'curBrightness': 50,
+			'curBrightness': 100,
 			'proximity': false,
 			'alarm': false,
 			'notification': false
