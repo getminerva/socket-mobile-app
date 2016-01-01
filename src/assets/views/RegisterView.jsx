@@ -1,12 +1,12 @@
 var React = require('react');
-var BackButton = require('./Utilities.jsx').BackButton;
 var Header = require('./Utilities.jsx').Header;
+var BackButton = require('./Utilities.jsx').BackButton;
 
 var RegisterView = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Header color='energized'>
+				<Header>
 					<BackButton history={this.props.history}>Back</BackButton>
 				</Header>
 				<div className='content has-header'>

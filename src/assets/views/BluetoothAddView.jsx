@@ -1,4 +1,5 @@
 var React = require('react');
+var Header = require('./Utilities.jsx').Header;
 var BackButton = require('./Utilities.jsx').BackButton;
 var Toggle = require('../js/components/Common.jsx').Toggle;
 
@@ -77,10 +78,10 @@ var BluetoothAddView = React.createClass({
 
 		return (
 			<div>
-				<div className='bar bar-header bar-light'>
+				<Header>
 					<BackButton history={this.props.history}>Cancel</BackButton>
 					<div className="title">Discover</div>
-				</div>
+				</Header>
 				<div className="content has-header">
 					<ul className="list">
 						<Toggle

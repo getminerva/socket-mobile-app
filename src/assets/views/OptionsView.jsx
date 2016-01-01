@@ -1,8 +1,6 @@
 var React = require('react');
-
-var BackButton = require('./Utilities.jsx').BackButton;
 var Header = require('./Utilities.jsx').Header;
-
+var BackButton = require('./Utilities.jsx').BackButton;
 var BFF = require('../js/services/BFF.js');
 
 var OptionsView = React.createClass({

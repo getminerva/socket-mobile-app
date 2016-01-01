@@ -1,9 +1,8 @@
 var React = require('react');
 var Link = require('react-router').Link;
-
-var BFF = require('../js/services/BFF.js');
-var SocketList = require('../js/components/SocketList.jsx').SocketList;
 var Header = require('./Utilities.jsx').Header;
+var SocketList = require('../js/components/SocketList.jsx').SocketList;
+var BFF = require('../js/services/BFF.js');
 
 var HomeView = React.createClass({
 	getDefaultProps: function() {
@@ -18,7 +17,7 @@ var HomeView = React.createClass({
 		});
 		return (
 			<div>
-				<Header color='energized'>
+				<Header>
 					<div className='title'>Socket</div>
 					<Link
 						to='/add'
