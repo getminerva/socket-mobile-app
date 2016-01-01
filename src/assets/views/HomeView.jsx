@@ -12,8 +12,10 @@ var HomeView = React.createClass({
 	},
 	render: function() {
 		var items = [];
-		this.props.service.getAll().done(function(sockets) {
+		this.props.service.getAll().then(function(sockets) {
 			items = sockets;
+		}, function(error) {
+			console.log(error);
 		});
 		return (
 			<div>
