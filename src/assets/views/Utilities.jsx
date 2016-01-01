@@ -26,7 +26,7 @@ var BackButton = React.createClass({
 var Header = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'color': 'light'
+			'color': 'energized'
 		});
 	},
 	render: function() {
