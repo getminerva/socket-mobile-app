@@ -10,13 +10,20 @@ var HomeView = React.createClass({
 			'service': new BFF().socketService	// This shit's necessary
 		});
 	},
-	render: function() {
-		var items = [];
+	getInitialState: function() {
+		return ({
+			'items': []
+		});
+	},
+	componentDidMount: function() {
+		var that = this;
 		this.props.service.getAll().then(function(sockets) {
-			items = sockets;
+			that.setState({'items': sockets});
 		}, function(error) {
 			console.log(error);
 		});
+	},
+	render: function() {
 		return (
 			<div>
 				<Header>
@@ -29,7 +36,7 @@ var HomeView = React.createClass({
 						className='button button-clear icon ion-gear-b'></Link>
 				</Header>
 				<div className="content has-header">
-					<SocketList items={items} history={this.props.history}/>
+					<SocketList items={this.state.items} history={this.props.history}/>
 				</div>
 			</div>
 		);
