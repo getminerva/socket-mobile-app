@@ -39,6 +39,10 @@ var SocketItemIcons = React.createClass({
 });
 
 var SocketItem = React.createClass({
+	contextTypes: {
+		'router': React.PropTypes.object,
+		'bff': React.PropTypes.object
+	},
 	getDefaultProps: function() {
 		return ({
 			'id': 0,
@@ -87,16 +91,14 @@ var SocketItem = React.createClass({
 		// Or Update via web
 
 		// Update backend
-		// this.context.socketService.setBrightness(newBrightness).then(function(success) {
-		// 	// Update view
-		// 	this.setState({'curBrightness': newBrightness});
-		// 	this.setState({'prvBrightness': oldBrightness});
-		// }, function(error) {
-		// 	console.log(error);
-		// });
-
-		this.setState({'curBrightness': newBrightness});
-		this.setState({'prvBrightness': oldBrightness});
+		var that = this;
+		this.context.bff.socketService.setBrightness(this.props.id, newBrightness).then(function(success) {
+			// Update view
+			that.setState({'curBrightness': newBrightness});
+			that.setState({'prvBrightness': oldBrightness});
+		}, function(error) {
+			console.log(error);
+		});
 	},
 	handlePress: function(ev) {
 		console.log("Press brightness");
@@ -104,17 +106,14 @@ var SocketItem = React.createClass({
 	},
 	componentDidMount: function() {
 		// Fetch Socket Info
-		var dataService = new BFF().socketService;
-
 		var that = this;
-		dataService.findById(this.props.id).then(function(socketInfo) {
+		this.context.bff.socketService.findById(this.props.id).then(function(socketInfo) {
 			that.setState({'curBrightness': socketInfo.curBrightness});
 			that.setState({'prvBrightness': socketInfo.prvBrightness});
 		}, function(error) {
 			console.log(error);
 		});
-	},
-	componentDidMount: function() {
+		
 		// Setup touch handlers
 		var opts = {}
 		var mc = new Hammer.Manager(ReactDOM.findDOMNode(this));
