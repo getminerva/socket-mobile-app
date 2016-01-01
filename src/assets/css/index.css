@@ -17,3 +17,9 @@ li.item-clickable:active {
 .icon-inactive {
 	color: #bbb;
 }
+
+.state-indicator {
+	width: 32px;
+	height: 32px;
+	background: #bbb;
+}

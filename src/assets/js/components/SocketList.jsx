@@ -1,6 +1,19 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var SocketStateIndicator = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'on': false,
+		});
+	},
+	render: function() {
+		return (
+			<h1 className='state-indicator'>{(this.props.on) ? 'ON' : 'OFF'}</h1>
+		);
+	}
+});
+
 var SocketItemIcons = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -90,6 +103,7 @@ var SocketItem = React.createClass({
 	render: function() {
 		return (
 			<div>
+				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
 				<h4>{this.props.nickName}</h4>
 				<SocketItemIcons
 					proximity={this.props.proximity}
