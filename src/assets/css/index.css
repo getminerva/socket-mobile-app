@@ -23,3 +23,11 @@ li.item-clickable:active {
 	height: 32px;
 	background: #bbb;
 }
+
+.state-on {
+	color: #ffc900;
+}
+
+.state-off {
+	color: #555;
+}

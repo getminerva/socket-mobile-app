@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var BFF = require('../services/BFF.js');
 
 var SocketStateIndicator = React.createClass({
 	getDefaultProps: function() {
@@ -9,7 +10,7 @@ var SocketStateIndicator = React.createClass({
 	},
 	render: function() {
 		return (
-			<h1 className='state-indicator'>{(this.props.on) ? 'ON' : 'OFF'}</h1>
+			<i className={'icon ion-record ' + (this.props.on ) ? 'state-on': 'state-off'}></i>
 		);
 	}
 });
@@ -67,6 +68,7 @@ var SocketItem = React.createClass({
 	handleDblTap: function(ev) {
 		// TODO: Toggle brightness
 		console.log("Toggle brightness");
+		var newBrightness = this.state.prvBrightness;
 
 		// BTLE Flow
 		ble.connect(this.props.macId, function(success) {
@@ -79,10 +81,29 @@ var SocketItem = React.createClass({
 		}, function(error) {
 			alert("Error connecting to " + this.props.nickName + " :(");
 		});
+
+		// Or Update via web
+
+		// Update backend
+
+		// Update view
+		brightness = th
+		this.setState({'curBrightness': curBrightness});
 	},
 	handlePress: function(ev) {
 		console.log("Press brightness");
 		this.props.history.push('/socket/' + this.props.id);
+	},
+	componentWillMount: function() {
+		// Fetch Socket Info
+		var dataService = new BFF();
+
+		dataService.findById(this.props.id).then(function(socketInfo) {
+			this.setState({'curBrightness': socketInfo.curBrightness});
+			this.setState({'prvBrightness': socketInfo.prvBrightness});
+		}, function(error) {
+			console.log(error);
+		});
 	},
 	componentDidMount: function() {
 		// Setup touch handlers
@@ -102,7 +123,7 @@ var SocketItem = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
+			<div className='item-icon-left'>
 				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
 				<h4>{this.props.nickName}</h4>
 				<SocketItemIcons
