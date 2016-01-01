@@ -3,8 +3,6 @@
 + Complete registration flow
 + Add session service (maybe) and a session verification with APIs
 + Add transitions
-+ Change onclick handlers to touchstarts
-+ Change (some) headers to yellow/energized
 + Implement the SocketItem state indicator
 + Implement the SocketItem Toggling/Touch-slide
 + Change jQ deferreds to HTML5 promises
@@ -16,6 +14,10 @@
 + Research best use of router...?
 
 # WORKLOG
+
+**1.1.2016**
++ Change onclick handlers to touchstarts
++ Change (some) headers to yellow/energized
 
 **12.30-31.2015**
 + Design & build a login system

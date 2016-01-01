@@ -9,14 +9,19 @@ var OptionsView = React.createClass({
 			'authService': new BFF()
 		});
 	},
-	handleLogout: function() {
-		this.props.authService.logout();
-		this.props.history.push('/');
+	handleLogout: function(ev) {
+		 if (confirm("Are you sure you want to logout?")) {
+			 this.props.authService.logout();
+			 this.props.history.push('/');
+		 }
+	},
+	componentDidMount: function() {
+		document.querySelector('.item-logout').addEventListener('touchstart', this.handleLogout);
 	},
 	render: function() {
 		return (
 			<div>
-				<Header color='energized'>
+				<Header>
 					<BackButton history={this.props.history}>Back</BackButton>
 					<div className='title'>Options</div>
 				</Header>
@@ -29,7 +34,7 @@ var OptionsView = React.createClass({
 						<div className='item'>
 							Change Password
 						</div>
-						<div className='item' onClick={this.handleLogout}>
+						<div className='item item-logout'>
 							Logout
 						</div>
 					</div>
