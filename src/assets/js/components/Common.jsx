@@ -3,7 +3,7 @@ var React = require('react');
 var Toggle = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'color': null,
+			'color': 'balanced',
 			'checked': false,
 			'onChange': null
 		})
@@ -14,7 +14,7 @@ var Toggle = React.createClass({
 				{this.props.children}
 				<label className={'toggle toggle-' + this.props.color}>
 					<input type="checkbox"
-						defaultChecked={this.props.checked}
+						checked={this.props.checked}
 						onChange={this.props.onChange}/>
 					<div className="track">
 						<div className="handle"></div>
@@ -28,7 +28,7 @@ var Toggle = React.createClass({
 var Range = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'color': null,
+			'color': 'energized',
 			'leftIcon': null,
 			'rightIcon': null,
 			'value': 50,
@@ -51,7 +51,7 @@ var Range = React.createClass({
 					type="range"
 					min="0"
 					max="100"
-					defaultValue={this.props.value}
+					value={this.props.value}
 					onChange={this.props.onChange}
 				/>
 				{rightIcon}
@@ -72,7 +72,7 @@ var TextInputItem = React.createClass({
 		return (
 			<label className="item item-input">
 				<input type="text"
-					defaultValue={this.props.value}
+					value={this.props.value}
 					onChange={this.props.onChange}
 				/>
 			</label>
