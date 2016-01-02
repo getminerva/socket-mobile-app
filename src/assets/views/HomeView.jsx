@@ -5,10 +5,8 @@ var SocketList = require('../js/components/SocketList.jsx').SocketList;
 var BFF = require('../js/services/BFF.js');
 
 var HomeView = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'service': new BFF().socketService	// This shit's necessary
-		});
+	contextTypes: {
+		'bff': React.PropTypes.object
 	},
 	getInitialState: function() {
 		return ({
@@ -17,7 +15,7 @@ var HomeView = React.createClass({
 	},
 	componentDidMount: function() {
 		var that = this;
-		this.props.service.getAll().then(function(sockets) {
+		this.context.bff.socketService.getAll().then(function(sockets) {
 			that.setState({'items': sockets});
 		}, function(error) {
 			console.log(error);
