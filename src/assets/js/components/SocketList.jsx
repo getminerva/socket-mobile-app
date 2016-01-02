@@ -92,10 +92,12 @@ var SocketItem = React.createClass({
 
 		// Update backend
 		var that = this;
-		this.context.bff.socketService.setBrightness(this.props.id, newBrightness).then(function(success) {
+		this.context.bff.socketService.setBrightness(this.props.id, newBrightness).then(function(socketInfo) {
 			// Update view
-			that.setState({'curBrightness': newBrightness});
-			that.setState({'prvBrightness': oldBrightness});
+			that.setState({
+				'curBrightness': newBrightness,
+				'prvBrightness': oldBrightness,
+			});
 		}, function(error) {
 			console.log(error);
 		});
@@ -108,12 +110,18 @@ var SocketItem = React.createClass({
 		// Fetch Socket Info
 		var that = this;
 		this.context.bff.socketService.findById(this.props.id).then(function(socketInfo) {
-			that.setState({'curBrightness': socketInfo.curBrightness});
-			that.setState({'prvBrightness': socketInfo.prvBrightness});
+			that.setState({
+				'nickName': socketInfo.nickName,
+				'curBrightness': socketInfo.curBrightness,
+				'prvBrightness': socketInfo.prvBrightness,
+				'proximity': socketInfo.proximity,
+				'alarm': socketInfo.alarm,
+				'notification': socketInfo.notification
+			});
 		}, function(error) {
 			console.log(error);
 		});
-		
+
 		// Setup touch handlers
 		var opts = {}
 		var mc = new Hammer.Manager(ReactDOM.findDOMNode(this));
