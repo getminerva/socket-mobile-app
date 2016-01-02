@@ -1,13 +1,16 @@
 # TODO
 
++ Swipe instead of press, maybe? to access specific socket view?
++ Style the SocketItem correctly
++ Use cordova's alert & status bar plugins to not look ass
++ Make microservice methods promise-less and move all the import methods into BFF
 + Complete registration flow
 + Add session service (maybe) and a session verification with APIs
 + Add transitions
-+ Implement the SocketItem state indicator
-+ Implement the SocketItem Toggling/Touch-slide
-+ Change jQ deferreds to HTML5 promises
++ Implement the SocketItem Touch-slide
 + Distribute cordova APKs
 + Add tabbed interface for groups + solos
++ Change jQ deferreds to HTML5 promises
 + Add minification to the build process
 + Reduce number of libs & use browserify
 + Implement bluetooth connectivity
@@ -16,8 +19,12 @@
 # WORKLOG
 
 **1.1.2016**
++ Speed app navigation - it was the onEnter function, creating a new BFF object just to verify if user was loggedIn. It's nice and quick now.
++ Change (socketService's) jQ deferreds to HTML5 promises
 + Change onclick handlers to touchstarts
 + Change (some) headers to yellow/energized
++ Implement the SocketItem state indicator
++ Implement the SocketItem Toggling
 
 **12.30-31.2015**
 + Design & build a login system

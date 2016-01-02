@@ -15,6 +15,7 @@ var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 
 // services
 var BFF = require('./js/services/BFF.js');
+const Bff = new BFF();
 
 const App = React.createClass({
 	childContextTypes: {
@@ -23,7 +24,7 @@ const App = React.createClass({
 	},
 	getDefaultProps: function() {
 		return ({
-			'bff': new BFF()
+			'bff': Bff
 		});
 	},
 	getChildContext: function() {
@@ -43,8 +44,7 @@ const App = React.createClass({
 
 // CORDOVA BINDINGS
 var requireAuth = function(nextState, replaceState) {
-	var bff = new BFF();
-	if (!bff.loggedIn()) {
+	if (!Bff.loggedIn()) {
 		replaceState({ nextPathName : nextState.location.pathname}, '/login');
 	}
 }
