@@ -1,9 +1,10 @@
 # TODO
 
++ Change nav buttons eventlisteners to touchends
++ Add network settings to options page
 + Add form checking to registration (validation, autofill, matching & strength)
 + Change android's statusbar color pls
 + Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
-+ Add network settings to options page
 + Add remove button to socketView
 + Swipe instead of press, maybe? to access specific socket view?
 + Style the SocketItem correctly
@@ -25,6 +26,7 @@
 + Use cordova's alert & status bar plugins to not look ass
 + Change OptionView to use context.bff
 + Complete registration flow
++ Add icon
 
 **1.1.2016**
 + Speed app navigation - it was the onEnter function, creating a new BFF object just to verify if user was loggedIn. It's nice and quick now.
