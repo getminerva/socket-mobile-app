@@ -48,8 +48,11 @@ var requireAuth = function(nextState, replaceState) {
 	}
 }
 
-// CORDOVA BINDINGS
+// CORDOVA BINDING
 document.addEventListener('deviceready', function() {
+	if (cordova.platformId == 'android') {
+		StatusBar.backgroundColorByHexString("#f39c12");
+	}
 	window.alert = navigator.notification.alert;
 	window.confirm = navigator.notification.confirm;
 	window.prompt = navigator.notification.prompt;
