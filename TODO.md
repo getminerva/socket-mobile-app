@@ -1,11 +1,11 @@
 # TODO
 
++ Change android's statusbar color pls
 + Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
 + Add network settings to options page
 + Add remove button to socketView
 + Swipe instead of press, maybe? to access specific socket view?
 + Style the SocketItem correctly
-+ Use cordova's alert & status bar plugins to not look ass
 + Make microservice methods promise-less and move all the import methods into BFF
 + Complete registration flow
 + Add session service (maybe) and a session verification with APIs
@@ -20,6 +20,10 @@
 + Research best use of router...?
 
 # WORKLOG
+
+**1.2.2016**
++ Use cordova's alert & status bar plugins to not look ass
++ Change OptionView to use context.bff
 
 **1.1.2016**
 + Speed app navigation - it was the onEnter function, creating a new BFF object just to verify if user was loggedIn. It's nice and quick now.
@@ -59,12 +63,10 @@
 + Reorganize home screen/whatever
 
 **12.20.15**
-
 + Fix the JS Service issues - why ain't they loading??
 	- Nice, fixed the 'sockets not showing up' issue. It was because the HomeView getDefaultProps was mis-spelled as geDefaultProps.
 
 **12.14.2015**
-
 + Turn the react script lib into a require
 + Implemented routing
 + Removed the concating & switched to browserify - still fixed the window.component = React.create... global namespace polluting issue
@@ -76,7 +78,6 @@
 	$ gulp replace
 
 **12.14.15 - indecent hours**
-
 + Set up working build process
 	1. gulp concat-jsx to put all the jsx into one file
 	2. gulp copy-html to copy new html file into the new one
