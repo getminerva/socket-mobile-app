@@ -29,7 +29,7 @@ var UserService = function() {
 			var user = null;
 
 			for (var i=0; i < users.length; i++) {
-				if (users[i].userName = uname) {
+				if (users[i].userName == uname) {
 					user = users[i];
 					break;
 				}
@@ -53,7 +53,23 @@ var UserService = function() {
 	}
 
 	this.createUser = function(userInfo) {
-		// TODO: Some data verification
+		var promise = new Promise(function(resolve, reject) {
+			// Check to see that it has an email, username and password field
+			if (!(!!userInfo.email && !!userInfo.userName && !!userInfo.passWord)) {
+				reject("Not enough information.");
+			} else {
+				users.push({
+					'id': users[users.length-1].id + 1,
+					'uuid': 'aa-bb-cc-dd-ee-ff',
+					'email': userInfo.email,
+					'userName': userInfo.userName,
+					'passWordHash': bcrypt.hashSync(userInfo.passWord, 10)
+				});
+				console.log(users);
+				resolve(userInfo);
+			}
+		});
+		return promise;
 	}
 
 	this.login = function(uname, pw) {
@@ -83,8 +99,9 @@ var UserService = function() {
 		{
 			'id': 0,
 			'uuid': 'aa-bb-cc-dd-ee-ff',
+			'email': 'admin@example.com',
 			'userName': 'admin',
-			'passWordHash': bcrypt.hashSync('admin', bcrypt.genSaltSync(10))
+			'passWordHash': bcrypt.hashSync('admin', 10)
 		}
 	];
 }
