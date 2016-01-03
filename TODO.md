@@ -1,5 +1,8 @@
 # TODO
 
++ Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
++ Add network settings to options page
++ Add remove button to socketView
 + Swipe instead of press, maybe? to access specific socket view?
 + Style the SocketItem correctly
 + Use cordova's alert & status bar plugins to not look ass
