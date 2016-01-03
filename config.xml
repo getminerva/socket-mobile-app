@@ -8,6 +8,7 @@
         Castle Co. Team
     </author>
     <content src="index.html" />
+    <icon src="src/assets/img/socket.png" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
