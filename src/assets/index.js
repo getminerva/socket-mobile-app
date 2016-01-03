@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var IndexRoute = require('react-router').IndexRoute;
 var Route = require('react-router').Route;
-var Link = require('react-router').Link;
 
 // VIEWS
 var HomeView = require('./views/HomeView.jsx');
