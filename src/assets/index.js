@@ -42,12 +42,18 @@ const App = React.createClass({
 	}
 });
 
-// CORDOVA BINDINGS
 var requireAuth = function(nextState, replaceState) {
 	if (!Bff.loggedIn()) {
 		replaceState({ nextPathName : nextState.location.pathname}, '/login');
 	}
 }
+
+// CORDOVA BINDINGS
+document.addEventListener('deviceready', function() {
+	window.alert = navigator.notification.alert;
+	window.confirm = navigator.notification.confirm;
+	window.prompt = navigator.notification.prompt;
+});
 
 ReactDOM.render((
 	<Router>
