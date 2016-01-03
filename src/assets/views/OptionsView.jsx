@@ -10,10 +10,11 @@ var OptionsView = React.createClass({
 		});
 	},
 	handleLogout: function(ev) {
-		 if (confirm("Are you sure you want to logout?")) {
-			 this.props.authService.logout();
-			 this.props.history.push('/');
-		 }
+		var that = this;
+		 confirm("Are you sure you want to logout?", function() {
+			 that.props.authService.logout();
+			 that.props.history.push('/');
+		 }, "Logout");
 	},
 	componentDidMount: function() {
 		document.querySelector('.item-logout').addEventListener('touchstart', this.handleLogout);
