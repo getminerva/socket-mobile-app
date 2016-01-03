@@ -4,15 +4,13 @@ var BackButton = require('./Utilities.jsx').BackButton;
 var BFF = require('../js/services/BFF.js');
 
 var OptionsView = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'authService': new BFF()
-		});
+	contextTypes:  {
+		'bff': React.PropTypes.object
 	},
 	handleLogout: function(ev) {
 		var that = this;
 		 confirm("Are you sure you want to logout?", function() {
-			 that.props.authService.logout();
+			 that.context.bff.logout();
 			 that.props.history.push('/');
 		 }, "Logout");
 	},
