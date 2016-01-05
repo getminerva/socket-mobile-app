@@ -3,7 +3,30 @@ var React = require('react');
 var Toggle = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'color': 'balanced',
+			'color': 'energized',
+			'checked': false,
+			'onChange': null
+		})
+	},
+	render: function() {
+		return (
+			<label className={'toggle toggle-' + this.props.color}>
+				<input type="checkbox"
+					checked={this.props.checked}
+					onChange={this.props.onChange}/>
+				<div className="track">
+					<div className="handle"></div>
+				</div>
+			</label>
+		);
+	}
+});
+
+
+var ToggleItem = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'color': 'energized',
 			'checked': false,
 			'onChange': null
 		})
@@ -12,14 +35,10 @@ var Toggle = React.createClass({
 		return (
 			<div className='item item-toggle'>
 				{this.props.children}
-				<label className={'toggle toggle-' + this.props.color}>
-					<input type="checkbox"
-						checked={this.props.checked}
-						onChange={this.props.onChange}/>
-					<div className="track">
-						<div className="handle"></div>
-					</div>
-				</label>
+				<Toggle
+					checked={this.props.checked}
+					onChange={this.props.onChange}
+				/>
 			</div>
 		);
 	}
@@ -60,7 +79,6 @@ var Range = React.createClass({
 	}
 });
 
-
 var TextInputItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -80,8 +98,25 @@ var TextInputItem = React.createClass({
 	}
 });
 
+var List = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'items': []
+		});
+	},
+	render: function() {
+		return (
+			<div className='list'>
+				{this.props.item}
+			</div>
+		);
+	}
+});
+
 module.exports = {
 	Toggle: Toggle,
+	ToggleItem: ToggleItem,
 	Range: Range,
-	TextInputItem: TextInputItem
+	TextInputItem: TextInputItem,
+	List: List
 }
