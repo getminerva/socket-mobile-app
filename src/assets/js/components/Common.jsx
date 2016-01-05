@@ -22,7 +22,6 @@ var Toggle = React.createClass({
 	}
 });
 
-
 var ToggleItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -56,7 +55,6 @@ var Range = React.createClass({
 		return (
 			<label className={'range range-' + this.props.color}>
 				<input
-					className={'range range-' + this.props.color}
 					type="range"
 					min="0"
 					max="100"
@@ -90,7 +88,10 @@ var RangeItem = React.createClass({
 		return (
 			<label className={'item range range-' + this.props.color}>
 				{leftIcon}
-				<Range
+				<input
+					type="range"
+					min="0"
+					max="100"
 					value={this.props.value}
 					onChange={this.props.onChange}
 				/>
