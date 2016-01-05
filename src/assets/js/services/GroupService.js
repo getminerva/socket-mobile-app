@@ -22,7 +22,7 @@ var GroupService = function() {
 	}
 
 	this.getAll = function() {
-		var promise = new new Promise(function(resolve, reject) {
+		var promise = new Promise(function(resolve, reject) {
 			resolve(groups);
 		});
 		return promise;
