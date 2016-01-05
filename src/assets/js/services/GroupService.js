@@ -23,6 +23,13 @@ var GroupService = function() {
 		return deferred.promise();
 	}
 
+	this.getAll = function() {
+		var promise = new new Promise(function(resolve, reject) {
+			resolve(groups);
+		});
+		return promise;
+	}
+
 	this.createGroup = function(groupInfo) {
 		// TODO: Some data verification
 
