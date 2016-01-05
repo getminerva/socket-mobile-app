@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Range = require('./Common.jsx').Range;
 
 var SocketStateIndicator = React.createClass({
 	getDefaultProps: function() {
@@ -55,7 +56,8 @@ var SocketListItem = React.createClass({
 	getInitialState: function() {
 		return ({
 			curBrightness: 50,
-			prvBrightness: 0
+			prvBrightness: 0,
+			toggled: false
 		});
 	},
 	handleTap: function(ev) {
@@ -68,6 +70,28 @@ var SocketListItem = React.createClass({
 	handleSglTap: function(ev) {
 		// TODO: Toggle brightness slider
 		console.log("Toggle brightness slider");
+		this.setState({'toggled': !this.state.toggled});
+	},
+	unfocus: function(ev) {
+		this.setState({'toggled': false});
+	},
+	changeBrightness: function(ev) {
+		// TODO: Change the brightness of the socket [real-time]
+		var level = ev.target.value;
+		console.log(level);
+		// [TODO] Try it via BT
+
+		// [TODO] Try it via web (if away)
+
+		// Update backend
+		var sId = parseInt(this.props.id);
+		var that = this;
+		this.context.bff.socketService.setBrightness(sId, level).then(function(result) {
+			// Update view
+			that.setState({'curBrightness' : level});
+		}, function(error) {
+			console.log(error);
+		});
 	},
 	handleDblTap: function(ev) {
 		// TODO: Toggle brightness
@@ -137,6 +161,15 @@ var SocketListItem = React.createClass({
 		mc.on('press', this.handlePress);
 	},
 	render: function() {
+		var range;
+		if (this.state.toggled) {
+			range = (
+				<Range
+					value={this.state.curBrightness}
+					onChange={this.changeBrightness}
+				/>
+			);
+		}
 		return (
 			<li className="item item-clickable" key={this.props.key}>
 				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
@@ -148,6 +181,7 @@ var SocketListItem = React.createClass({
 					alarm={this.props.alarm}
 					notification={this.props.notification}
 				/>
+				{range}
 			</li>
 		)
 	}
