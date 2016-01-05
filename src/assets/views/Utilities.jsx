@@ -1,4 +1,5 @@
 var React = require('react');
+var Link = require('react-router').Link;
 
 var BackButton = React.createClass({
 	// contextTypes: {
@@ -36,9 +37,58 @@ var Header = React.createClass({
 			</div>
 		);
 	}
-})
+});
+
+var TabItem = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'active': false,
+			'to': '/'
+		});
+	},
+	render: function() {
+		var tabClass = 'tab-item' + ( (this.props.active) ? ' active' : '');
+		return (
+			<Link className={tabClass} to={this.props.to}>
+				{this.props.children}
+			</Link>
+		);
+	}
+});
+
+var Tabs = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'os': 'android',		// Linked to Cordova's platformId
+			'bgColor': 'energized',
+			'color': 'royal'
+		});
+	},
+	render: function() {
+		var tabsClass = 'tabs ';
+		tabsClass += 'tabs-' + this.props.bgColor + ' ';
+		tabsClass += 'tabs-color-' + this.props.color + ' ';
+		switch (this.props.os) {
+			case 'android':
+				tabsClass += 'tabs-striped tabs-top';
+				break;
+			case 'ios':
+			case 'windows':
+			default:
+				tabsClass += 'tabs-striped';
+				break;
+		};
+		return (
+			<div className={tabsClass}>
+				{this.props.children}
+			</div>
+		);
+	}
+});
 
 module.exports = {
 	BackButton: BackButton,
-	Header: Header
+	Header: Header,
+	Tabs: Tabs,
+	TabItem: TabItem
 }
