@@ -1,8 +1,8 @@
 var React = require('react');
 var Header = require('./Utilities.jsx').Header;
 var BackButton = require('./Utilities.jsx').BackButton;
-var Range = require('../js/components/Common.jsx').Range;
-var Toggle = require('../js/components/Common.jsx').Toggle;
+var RangeItem = require('../js/components/Common.jsx').RangeItem;
+var ToggleItem = require('../js/components/Common.jsx').ToggleItem;
 var TextInputItem = require('../js/components/Common.jsx').TextInputItem;
 
 var SocketView = React.createClass({
@@ -120,7 +120,7 @@ var SocketView = React.createClass({
 								</div>
 							</div>
 						</li>
-						<Range
+						<RangeItem
 							color='energized'
 							leftIcon='ion-ios-lightbulb'
 							rightIcon='ion-ios-lightbulb-outline'
@@ -128,12 +128,12 @@ var SocketView = React.createClass({
 							onChange={this.changeBrightness}
 						/>
 						<li className='item item-divider'></li>
-						<Toggle
+						<ToggleItem
 							color='energized'
 							checked={this.state.proximity}
 							onChange={this.changeProximity}
 							>Proximity Sense
-						</Toggle>
+						</ToggleItem>
 					</ul>
 				</div>
 			</div>

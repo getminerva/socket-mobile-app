@@ -1,7 +1,7 @@
 var React = require('react');
 var Header = require('./Utilities.jsx').Header;
 var BackButton = require('./Utilities.jsx').BackButton;
-var Toggle = require('../js/components/Common.jsx').Toggle;
+var ToggleItem = require('../js/components/Common.jsx').ToggleItem;
 
 var DiscoveredItem = React.createClass({
 	getDefaultProps: function() {
@@ -79,15 +79,15 @@ var BluetoothAddView = React.createClass({
 		return (
 			<div>
 				<Header>
-					<BackButton history={this.props.history}>Cancel</BackButton>
+					<BackButton>Cancel</BackButton>
 					<div className="title">Discover</div>
 				</Header>
 				<div className="content has-header">
 					<ul className="list">
-						<Toggle
+						<ToggleItem
 							color='energized'
 							onChange={this.handleChange}>Scan for new Devices
-						</Toggle>
+						</ToggleItem>
 						<li className='item item-divider'>Detected devices</li>
 						{items}
 					</ul>
