@@ -6,6 +6,7 @@ var Route = require('react-router').Route;
 
 // VIEWS
 var HomeView = require('./views/HomeView.jsx');
+var GroupListView = require('./views/GroupListView.jsx');
 var SocketView = require('./views/SocketView.jsx').SocketView;
 var LoginView = require('./views/LoginView.jsx');
 var RegisterView = require('./views/RegisterView.jsx');
@@ -64,6 +65,7 @@ ReactDOM.render((
 			<Route path='register' component={RegisterView} />
 			<IndexRoute component={HomeView} onEnter={requireAuth}/>
 				<Route path='socket/:socketId' component={SocketView} />
+			<Route path='groups' component={GroupListView} onEnter={requireAuth}/>
 			<Route path='options' component={OptionsView} onEnter={requireAuth} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
