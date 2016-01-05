@@ -48,6 +48,30 @@ var Range = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'color': 'energized',
+			'value': 50,
+			'onChange': null
+		});
+	},
+	render: function() {
+		return (
+			<label className={'range range-' + this.props.color}>
+				<input
+					className={'range range-' + this.props.color}
+					type="range"
+					min="0"
+					max="100"
+					value={this.props.value}
+					onChange={this.props.onChange}
+				/>
+			</label>
+		);
+	}
+});
+
+var RangeItem = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'color': 'energized',
 			'leftIcon': null,
 			'rightIcon': null,
 			'value': 50,
@@ -66,10 +90,7 @@ var Range = React.createClass({
 		return (
 			<label className={'item range range-' + this.props.color}>
 				{leftIcon}
-				<input
-					type="range"
-					min="0"
-					max="100"
+				<Range
 					value={this.props.value}
 					onChange={this.props.onChange}
 				/>
@@ -117,6 +138,7 @@ module.exports = {
 	Toggle: Toggle,
 	ToggleItem: ToggleItem,
 	Range: Range,
+	RangeItem: RangeItem,
 	TextInputItem: TextInputItem,
 	List: List
 }
