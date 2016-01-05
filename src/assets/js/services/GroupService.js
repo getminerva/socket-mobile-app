@@ -3,7 +3,7 @@ var GroupService = function() {
 	var groups;
 
 	this.initialize = function() {
-		var promise = new new Promise(function(resolve, reject) {
+		var promise = new Promise(function(resolve, reject) {
 			// No initializion required
 			resolve();
 		});
