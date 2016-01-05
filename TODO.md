@@ -17,6 +17,7 @@
 + Switch to ES7?
 + Implement bluetooth connectivity
 + Add splash screen?
++ Figure out why Ionic isn't displaying properly on my device
 
 ## For 1.0 release
 + Implement group view
