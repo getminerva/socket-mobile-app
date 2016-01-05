@@ -51,7 +51,7 @@ var requireAuth = function(nextState, replaceState) {
 // CORDOVA BINDING
 document.addEventListener('deviceready', function() {
 	if (cordova.platformId == 'android') {
-		StatusBar.backgroundColorByHexString("#f39c12");
+		StatusBar.backgroundColorByHexString("#997800");
 	}
 	window.alert = navigator.notification.alert;
 	window.confirm = navigator.notification.confirm;
