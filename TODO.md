@@ -1,26 +1,44 @@
 # TODO
 
+## 1.0+
++ Add transitions
++ Research best use of router...?
++ Add minification to the build process
++ Make '/groups' indexroute & corresponding changes
++ Integrate Redux
++ Implement a content component that adjusts for header/footer
++ backend
++ Make ButtonLinks & IconLinks
++ Add 'add-group' button
++ Make session service & session objects setting the user
+
+## For 1.0 release
++ Implement group view
++ !!reorganize directory tree
+	+ Change Utilities to Common
 + Change nav buttons eventlisteners to touchends
 + Add network settings to options page
 + Add form checking to registration (validation, autofill, matching & strength)
-+ Change android's statusbar color pls
 + Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
 + Add remove button to socketView
 + Swipe instead of press, maybe? to access specific socket view?
 + Style the SocketItem correctly
 + Make microservice methods promise-less and move all the import methods into BFF
 + Add session service (maybe) and a session verification with APIs
-+ Add transitions
 + Implement the SocketItem Touch-slide
-+ Distribute cordova APKs
-+ Add tabbed interface for groups + solos
 + Change jQ deferreds to HTML5 promises
-+ Add minification to the build process
-+ Reduce number of libs & use browserify
++ Reduce number of libs
 + Implement bluetooth connectivity
-+ Research best use of router...?
++ Distribute cordova APKs
 
 # WORKLOG
+
+**1.4.2016**
++ Change android's statusbar color pls
+	- calculated this using the HSL values, lol
++ Implement groups
++ Add tabbed interface for groups + solos
+	- Currently, tabbed interfaces are implemented using separate pages.
 
 **1.2.2016**
 + Use cordova's alert & status bar plugins to not look ass
