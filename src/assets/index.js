@@ -28,10 +28,10 @@ const App = React.createClass({
 		});
 	},
 	getChildContext: function() {
-		return {
+		return ({
 			'router': this.props.history,
 			'bff': this.props.bff
-		}
+		});
 	},
 	render: function() {
 		return (
@@ -45,7 +45,7 @@ const App = React.createClass({
 var requireAuth = function(nextState, replaceState) {
 	if (!Bff.loggedIn()) {
 		replaceState({ nextPathName : nextState.location.pathname}, '/login');
-	SocketListView
+	}
 }
 
 // CORDOVA BINDING
@@ -63,8 +63,8 @@ ReactDOM.render((
 		<Route path='/' component={App}>
 			<Route path='login' component={LoginView} />
 			<Route path='register' component={RegisterView} />
-			<IndexRoute component={HomeView} onEnter={requireAuth}/>
-				<Route path='socket/:socketId' component={SocketListView} />
+			<IndexRoute component={SocketListView} onEnter={requireAuth}/>
+				<Route path='socket/:socketId' component={SocketView} />
 			<Route path='groups' component={GroupListView} onEnter={requireAuth}/>
 			<Route path='options' component={OptionsView} onEnter={requireAuth} />
 			<Route path='add' component={BluetoothAddView} />
