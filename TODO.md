@@ -1,21 +1,68 @@
 # TODO
 
-+ Complete registration flow
-+ Add session service (maybe) and a session verification with APIs
+## 1.0+
 + Add transitions
++ Research best use of router...?
++ Add minification to the build process
++ Make '/groups' indexroute & corresponding changes
++ Integrate Redux
++ Implement a content component that adjusts for header/footer
++ backend
++ Make ButtonLinks & IconLinks
++ Add 'add-group' button
++ Make session service & session objects setting the user
++ Add session service (maybe) and a session verification with APIs
++ Move synthetic/important methods into BFF
++ Update to react-router 2.0.0
++ Switch to ES7?
++ Implement bluetooth connectivity
++ Add splash screen?
++ Figure out why Ionic isn't displaying properly on my device
+
+## For 1.0 release
++ SocketItem Single Press
+	- Implement lose focus -> collapse
+	- Make sure it will only collapse when main section is pressed (probably just wrap the range in a non-click-through-able div so I can't accidentally touch the li)
++ Implement group view
++ !!reorganize directory tree
+	+ Change Utilities to Common
++ Add network settings to options page
++ Add form checking to registration (validation, autofill, matching & strength)
++ Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
++ Add remove button to socketView
++ Swipe instead of press, maybe? to access specific socket view?
++ Style the SocketItem correctly
++ Change jQ deferreds to HTML5 promises
++ Distribute cordova APKs
+
+# WORKLOG
+
+**1.4.2016**
++ Reduce number of libs
++ Implement the SocketItem Touch-slide
++ Implement ToggleItems, RangeItems and make Toggles & Ranges LowerLevel
++ Implement just a List
++ Make microservice methods promise-less
++ Change nav buttons eventlisteners to touchends
++ Change android's statusbar color pls
+	- calculated this using the HSL values, lol
++ Implement groups
++ Add tabbed interface for groups + solos
+	- Currently, tabbed interfaces are implemented using separate pages.
+
+**1.2.2016**
++ Use cordova's alert & status bar plugins to not look ass
++ Change OptionView to use context.bff
++ Complete registration flow
++ Add icon
+
+**1.1.2016**
++ Speed app navigation - it was the onEnter function, creating a new BFF object just to verify if user was loggedIn. It's nice and quick now.
++ Change (socketService's) jQ deferreds to HTML5 promises
 + Change onclick handlers to touchstarts
 + Change (some) headers to yellow/energized
 + Implement the SocketItem state indicator
-+ Implement the SocketItem Toggling/Touch-slide
-+ Change jQ deferreds to HTML5 promises
-+ Distribute cordova APKs
-+ Add tabbed interface for groups + solos
-+ Add minification to the build process
-+ Reduce number of libs & use browserify
-+ Implement bluetooth connectivity
-+ Research best use of router...?
-
-# WORKLOG
++ Implement the SocketItem Toggling
 
 **12.30-31.2015**
 + Design & build a login system
@@ -47,12 +94,10 @@
 + Reorganize home screen/whatever
 
 **12.20.15**
-
 + Fix the JS Service issues - why ain't they loading??
 	- Nice, fixed the 'sockets not showing up' issue. It was because the HomeView getDefaultProps was mis-spelled as geDefaultProps.
 
 **12.14.2015**
-
 + Turn the react script lib into a require
 + Implemented routing
 + Removed the concating & switched to browserify - still fixed the window.component = React.create... global namespace polluting issue
@@ -64,7 +109,6 @@
 	$ gulp replace
 
 **12.14.15 - indecent hours**
-
 + Set up working build process
 	1. gulp concat-jsx to put all the jsx into one file
 	2. gulp copy-html to copy new html file into the new one

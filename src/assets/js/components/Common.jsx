@@ -3,7 +3,29 @@ var React = require('react');
 var Toggle = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'color': null,
+			'color': 'energized',
+			'checked': false,
+			'onChange': null
+		})
+	},
+	render: function() {
+		return (
+			<label className={'toggle toggle-' + this.props.color}>
+				<input type="checkbox"
+					checked={this.props.checked}
+					onChange={this.props.onChange}/>
+				<div className="track">
+					<div className="handle"></div>
+				</div>
+			</label>
+		);
+	}
+});
+
+var ToggleItem = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'color': 'energized',
 			'checked': false,
 			'onChange': null
 		})
@@ -12,14 +34,10 @@ var Toggle = React.createClass({
 		return (
 			<div className='item item-toggle'>
 				{this.props.children}
-				<label className={'toggle toggle-' + this.props.color}>
-					<input type="checkbox"
-						defaultChecked={this.props.checked}
-						onChange={this.props.onChange}/>
-					<div className="track">
-						<div className="handle"></div>
-					</div>
-				</label>
+				<Toggle
+					checked={this.props.checked}
+					onChange={this.props.onChange}
+				/>
 			</div>
 		);
 	}
@@ -28,7 +46,30 @@ var Toggle = React.createClass({
 var Range = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'color': null,
+			'color': 'energized',
+			'value': 50,
+			'onChange': null
+		});
+	},
+	render: function() {
+		return (
+			<label className={'range range-' + this.props.color}>
+				<input
+					type="range"
+					min="0"
+					max="100"
+					value={this.props.value}
+					onChange={this.props.onChange}
+				/>
+			</label>
+		);
+	}
+});
+
+var RangeItem = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'color': 'energized',
 			'leftIcon': null,
 			'rightIcon': null,
 			'value': 50,
@@ -51,7 +92,7 @@ var Range = React.createClass({
 					type="range"
 					min="0"
 					max="100"
-					defaultValue={this.props.value}
+					value={this.props.value}
 					onChange={this.props.onChange}
 				/>
 				{rightIcon}
@@ -59,7 +100,6 @@ var Range = React.createClass({
 		);
 	}
 });
-
 
 var TextInputItem = React.createClass({
 	getDefaultProps: function() {
@@ -72,7 +112,7 @@ var TextInputItem = React.createClass({
 		return (
 			<label className="item item-input">
 				<input type="text"
-					defaultValue={this.props.value}
+					value={this.props.value}
 					onChange={this.props.onChange}
 				/>
 			</label>
@@ -80,8 +120,26 @@ var TextInputItem = React.createClass({
 	}
 });
 
+var List = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'items': []
+		});
+	},
+	render: function() {
+		return (
+			<div className='list'>
+				{this.props.item}
+			</div>
+		);
+	}
+});
+
 module.exports = {
 	Toggle: Toggle,
+	ToggleItem: ToggleItem,
 	Range: Range,
-	TextInputItem: TextInputItem
+	RangeItem: RangeItem,
+	TextInputItem: TextInputItem,
+	List: List
 }

@@ -4,19 +4,23 @@ var BackButton = require('./Utilities.jsx').BackButton;
 var BFF = require('../js/services/BFF.js');
 
 var OptionsView = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'authService': new BFF()
-		});
+	contextTypes:  {
+		'bff': React.PropTypes.object
 	},
-	handleLogout: function() {
-		this.props.authService.logout();
-		this.props.history.push('/');
+	handleLogout: function(ev) {
+		var that = this;
+		 confirm("Are you sure you want to logout?", function() {
+			 that.context.bff.logout();
+			 that.props.history.push('/');
+		 }, "Logout");
+	},
+	componentDidMount: function() {
+		document.querySelector('.item-logout').addEventListener('touchstart', this.handleLogout);
 	},
 	render: function() {
 		return (
 			<div>
-				<Header color='energized'>
+				<Header>
 					<BackButton history={this.props.history}>Back</BackButton>
 					<div className='title'>Options</div>
 				</Header>
@@ -29,7 +33,7 @@ var OptionsView = React.createClass({
 						<div className='item'>
 							Change Password
 						</div>
-						<div className='item' onClick={this.handleLogout}>
+						<div className='item item-logout'>
 							Logout
 						</div>
 					</div>

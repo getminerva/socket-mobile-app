@@ -1,8 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Range = require('./Common.jsx').Range;
 
-var SocketStateIndicator = React.createClass({
+var StateIndicator = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'on': false,
@@ -16,29 +15,7 @@ var SocketStateIndicator = React.createClass({
 	}
 });
 
-var SocketItemIcons = React.createClass({
-	getDefaultProps: function() {
-		return ({
-			'proximity': false,
-			'alarm': false,
-			'notification': false
-		});
-	},
-	render: function() {
-		var icp = 'icon ion-android-locate ';
-		var ica = 'icon ion-android-alarm-clock ';
-		var icn = 'icon ion-android-notifications ';
-		return (
-			<div>
-				<span className={this.props.proximity ? icp + 'icon-active' : icp + 'icon-inactive'}></span>
-				<span className={this.props.alarm ? ica + 'icon-active' : ica + 'icon-inactive'}></span>
-				<span className={this.props.notification ? icn + 'icon-active' : icn + 'icon-inactive'}></span>
-			</div>
-		);
-	}
-});
-
-var SocketListItem = React.createClass({
+var GroupListItem = React.createClass({
 	contextTypes: {
 		'router': React.PropTypes.object,
 		'bff': React.PropTypes.object
@@ -46,18 +23,15 @@ var SocketListItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'id': 0,
-			'nickName': 'undefined',
-			'macId': 'xx:xx:xx:xx',
+			'uuid': 'xx-xx-xx-xx-xx-xx',
+			'groupName': 'undefined',
 			'proximity': false,
-			'alarm': false,
-			'notification': false,
 		});
 	},
 	getInitialState: function() {
 		return ({
 			curBrightness: 50,
-			prvBrightness: 0,
-			toggled: false
+			prvBrightness: 0
 		});
 	},
 	handleTap: function(ev) {
@@ -70,28 +44,6 @@ var SocketListItem = React.createClass({
 	handleSglTap: function(ev) {
 		// TODO: Toggle brightness slider
 		console.log("Toggle brightness slider");
-		this.setState({'toggled': !this.state.toggled});
-	},
-	unfocus: function(ev) {
-		this.setState({'toggled': false});
-	},
-	changeBrightness: function(ev) {
-		// TODO: Change the brightness of the socket [real-time]
-		var level = ev.target.value;
-		console.log(level);
-		// [TODO] Try it via BT
-
-		// [TODO] Try it via web (if away)
-
-		// Update backend
-		var sId = parseInt(this.props.id);
-		var that = this;
-		this.context.bff.socketService.setBrightness(sId, level).then(function(result) {
-			// Update view
-			that.setState({'curBrightness' : level});
-		}, function(error) {
-			console.log(error);
-		});
 	},
 	handleDblTap: function(ev) {
 		// TODO: Toggle brightness
@@ -115,7 +67,7 @@ var SocketListItem = React.createClass({
 
 		// Update backend
 		var that = this;
-		this.context.bff.socketService.setBrightness(this.props.id, newBrightness).then(function(socketInfo) {
+		this.context.bff.groupService.setBrightness(this.props.id, newBrightness).then(function(socketInfo) {
 			// Update view
 			that.setState({
 				'curBrightness': newBrightness,
@@ -125,14 +77,14 @@ var SocketListItem = React.createClass({
 			console.log(error);
 		});
 	},
-	handlePress: function(ev) {
-		console.log("Press brightness");
-		this.props.history.push('/socket/' + this.props.id);
+	handleSwipe: function(ev) {
+		console.log("Swipe GroupItem");
+		this.props.history.push('/groups/' + this.props.id);
 	},
 	componentDidMount: function() {
 		// Fetch Socket Info
 		var that = this;
-		this.context.bff.socketService.findById(this.props.id).then(function(socketInfo) {
+		this.context.bff.groupService.findById(this.props.id).then(function(socketInfo) {
 			that.setState({
 				'nickName': socketInfo.nickName,
 				'curBrightness': socketInfo.curBrightness,
@@ -161,64 +113,45 @@ var SocketListItem = React.createClass({
 		mc.on('press', this.handlePress);
 	},
 	render: function() {
-		var range;
-		if (this.state.toggled) {
-			range = (
-				<Range
-					value={this.state.curBrightness}
-					onChange={this.changeBrightness}
-				/>
-			);
-		}
 		return (
-			<li className="item item-clickable" key={this.props.key}>
-				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
-				<h4>
-					{this.props.nickName}
-				</h4>
-				<SocketItemIcons
-					proximity={this.props.proximity}
-					alarm={this.props.alarm}
-					notification={this.props.notification}
-				/>
-				{range}
+			<li className='item item-icon-left item-clickable' key={this.props.key}>
+				<StateIndicator on={(this.state.curBrightness > 0)} />
+				<h4>{this.props.groupName}</h4>
 			</li>
-		)
+		);
 	}
 });
 
-var SocketList = React.createClass({
+var GroupList = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'sockets': [],
+			'groups': [],
 			'history': null
 		});
+
 	},
 	render: function() {
-		var history = this.props.history;
-
 		var key = 0;
-		var listItems = this.props.sockets.map(function(socket) {
+		var listItems = this.props.groups.map(function(group) {
 			key += 1;
 			return (
-				<SocketListItem
+				<GroupListItem
 					key={key}
-					id={socket.id}
-					nickName={socket.nickName}
-					macId={socket.macId}
-					proximity={socket.proximity}
-					alarm={socket.alarm}
-					notification={socket.notification}
+					id={group.id}
+					groupName={group.groupName}
+					macId={group.macId}
+					proximity={group.proximity}
 					history={history}
 				/>
 			);
 		});
+
 		return (
-			<ul className="list">
-				{ listItems }
+			<ul className='list'>
+				{listItems}
 			</ul>
 		);
 	}
 });
 
-module.exports = SocketList
+module.exports = GroupList;

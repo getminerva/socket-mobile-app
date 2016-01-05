@@ -3,24 +3,29 @@ var GroupService = function() {
 	var groups;
 
 	this.initialize = function() {
-		// No Initialization required
-		var deferred = $.Deferred();
-		deferred.resolve();
-		return deferred.promise();
+		var promise = new Promise(function(resolve, reject) {
+			// No initializion required
+			resolve();
+		});
+		return promise;
 	}
 
 	this.findById = function(id) {
-		var deferred = $.Deferred();
-		var group = null;
-		var l = groups.length;
-		for (var i = 0; i < l; i++) {
-			if (groups[i].id === id) {
-				group = groups[i];
-				break;
+		var promise = new Promise(function(resolve, reject) {
+			if (id < 0 || groups[groups.length-1].id < id) {
+				reject("Invalid ID.");
+			} else {
+				resolve(groups[id]);
 			}
-		}
-		deferred.resolve(group);
-		return deferred.promise();
+		});
+		return promise;
+	}
+
+	this.getAll = function() {
+		var promise = new Promise(function(resolve, reject) {
+			resolve(groups);
+		});
+		return promise;
 	}
 
 	this.createGroup = function(groupInfo) {
