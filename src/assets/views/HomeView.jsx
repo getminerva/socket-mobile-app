@@ -1,8 +1,9 @@
 var React = require('react');
 var Link = require('react-router').Link;
 var Header = require('./Utilities.jsx').Header;
+var Tabs = require('./Utilities.jsx').Tabs;
+var TabItem = require('./Utilities.jsx').TabItem;
 var SocketList = require('../js/components/SocketList.jsx').SocketList;
-var BFF = require('../js/services/BFF.js');
 
 var HomeView = React.createClass({
 	contextTypes: {
@@ -33,7 +34,11 @@ var HomeView = React.createClass({
 						to='/options'
 						className='button button-clear icon ion-gear-b'></Link>
 				</Header>
-				<div className="content has-header">
+				<Tabs os='android'>
+					<TabItem active={true} to='/'>Solo</TabItem>
+					<TabItem to='/groups'>Group</TabItem>
+				</Tabs>
+				<div className="content has-subheader">
 					<SocketList items={this.state.items} history={this.props.history}/>
 				</div>
 			</div>
