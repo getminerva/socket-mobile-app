@@ -13,10 +13,8 @@ var BackButton = React.createClass({
 	},
 	componentDidMount: function() {
 		// Attach return function to the button
-		// document.querySelector('.button-return')
-		// 	.addEventListener('touchend', this.props.history.goBack);
 		document.querySelector('.button-return')
-			.addEventListener('touchstart', this.context.router.goBack);
+			.addEventListener('touchend', this.context.router.goBack);
 	},
 	render: function() {
 		return (

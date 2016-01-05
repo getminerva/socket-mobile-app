@@ -11,8 +11,12 @@
 + Make ButtonLinks & IconLinks
 + Add 'add-group' button
 + Make session service & session objects setting the user
++ Add session service (maybe) and a session verification with APIs
++ Move synthetic/important methods into BFF
 + Update to react-router 2.0.0
 + Switch to ES7?
++ Implement bluetooth connectivity
++ Add splash screen?
 
 ## For 1.0 release
 + Implement group view
@@ -24,17 +28,15 @@
 + Add remove button to socketView
 + Swipe instead of press, maybe? to access specific socket view?
 + Style the SocketItem correctly
-+ Make microservice methods promise-less and move all the import methods into BFF
-+ Add session service (maybe) and a session verification with APIs
 + Implement the SocketItem Touch-slide
 + Change jQ deferreds to HTML5 promises
 + Reduce number of libs
-+ Implement bluetooth connectivity
 + Distribute cordova APKs
 
 # WORKLOG
 
 **1.4.2016**
++ Make microservice methods promise-less
 + Change nav buttons eventlisteners to touchends
 + Change android's statusbar color pls
 	- calculated this using the HSL values, lol
