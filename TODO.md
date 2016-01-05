@@ -20,6 +20,9 @@
 + Figure out why Ionic isn't displaying properly on my device
 
 ## For 1.0 release
++ SocketItem Single Press
+	- Implement lose focus -> collapse
+	- Make sure it will only collapse when main section is pressed (probably just wrap the range in a non-click-through-able div so I can't accidentally touch the li)
 + Implement group view
 + !!reorganize directory tree
 	+ Change Utilities to Common
@@ -29,14 +32,14 @@
 + Add remove button to socketView
 + Swipe instead of press, maybe? to access specific socket view?
 + Style the SocketItem correctly
-+ Implement the SocketItem Touch-slide
 + Change jQ deferreds to HTML5 promises
-+ Reduce number of libs
 + Distribute cordova APKs
 
 # WORKLOG
 
 **1.4.2016**
++ Reduce number of libs
++ Implement the SocketItem Touch-slide
 + Implement ToggleItems, RangeItems and make Toggles & Ranges LowerLevel
 + Implement just a List
 + Make microservice methods promise-less
