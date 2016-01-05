@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var BFF = require('../services/BFF.js');
 
-var SocketStateIndicator = React.createClass({
+var StateIndicator = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'on': false,
@@ -38,7 +38,7 @@ var SocketItemIcons = React.createClass({
 	}
 });
 
-var SocketItem = React.createClass({
+var SocketListItem = React.createClass({
 	contextTypes: {
 		'router': React.PropTypes.object,
 		'bff': React.PropTypes.object
@@ -139,17 +139,17 @@ var SocketItem = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
-				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
+			<li className="item item-clickable" key={this.props.key}>
+				<StateIndicator on={(this.state.curBrightness > 0)} />
 				<h4>
 					{this.props.nickName}
 				</h4>
 				<SocketItemIcons
-				proximity={this.props.proximity}
-				alarm={this.props.alarm}
-				notification={this.props.notification}
+					proximity={this.props.proximity}
+					alarm={this.props.alarm}
+					notification={this.props.notification}
 				/>
-			</div>
+			</li>
 		)
 	}
 });
@@ -157,30 +157,30 @@ var SocketItem = React.createClass({
 var SocketList = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'items': [],
+			'sockets': [],
 			'history': null
 		});
 	},
 	render: function() {
-		// Map the items in props to the ul
 		var history = this.props.history;
+
 		var key = 0;
-		var listItems = this.props.items.map(function(item) {
+		var listItems = this.props.sockets.map(function(socket) {
 			key += 1;
 			return (
-				<li className="item item-clickable" key={key}>
-					<SocketItem
-						id={item.id}
-						nickName={item.nickName}
-						macId={item.macId}
-						proximity={item.proximity}
-						alarm={item.alarm}
-						notification={item.notification}
-						history={history}
-					/>
-				</li>
+				<SocketListItem
+					key={key}
+					id={socket.id}
+					nickName={socket.nickName}
+					macId={socket.macId}
+					proximity={socket.proximity}
+					alarm={socket.alarm}
+					notification={socket.notification}
+					history={history}
+				/>
 			);
 		});
+
 		return (
 			<ul className="list">
 				{ listItems }
@@ -189,8 +189,4 @@ var SocketList = React.createClass({
 	}
 });
 
-module.exports = {
-	SocketList: SocketList,
-	SocketItem: SocketItem,
-	SocketItemIcons: SocketItemIcons
-};
+module.exports = SocketList
