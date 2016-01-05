@@ -1,8 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var BFF = require('../services/BFF.js');
 
-var StateIndicator = React.createClass({
+var SocketStateIndicator = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'on': false,
@@ -140,7 +139,7 @@ var SocketListItem = React.createClass({
 	render: function() {
 		return (
 			<li className="item item-clickable" key={this.props.key}>
-				<StateIndicator on={(this.state.curBrightness > 0)} />
+				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
 				<h4>
 					{this.props.nickName}
 				</h4>
@@ -180,7 +179,6 @@ var SocketList = React.createClass({
 				/>
 			);
 		});
-
 		return (
 			<ul className="list">
 				{ listItems }
