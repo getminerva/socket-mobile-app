@@ -1,5 +1,6 @@
 var React = require('react');
 var Link = require('react-router').Link;
+var IndexLink = require('react-router').IndexLink;
 
 var BackButton = React.createClass({
 	// contextTypes: {
@@ -40,19 +41,32 @@ var Header = React.createClass({
 });
 
 var TabItem = React.createClass({
+	contextTypes: {
+		'router': React.PropTypes.object
+	},
 	getDefaultProps: function() {
 		return ({
-			'active': false,
 			'to': '/'
 		});
 	},
 	render: function() {
-		var tabClass = 'tab-item' + ( (this.props.active) ? ' active' : '');
-		return (
-			<Link className={tabClass} to={this.props.to}>
-				{this.props.children}
-			</Link>
-		);
+		var link;
+		if (this.props.to == '/') {
+			link = <IndexLink
+						className={'tab-item'}
+						activeClassName={'tab-item active'}
+						to={this.props.to}>
+						{this.props.children}
+					</IndexLink>
+		} else {
+			link = <Link
+						className={'tab-item'}
+						activeClassName={'tab-item active'}
+						to={this.props.to}>
+							{this.props.children}
+					</Link>
+		}
+		return (link);
 	}
 });
 
