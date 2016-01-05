@@ -20,6 +20,8 @@
 + Figure out why Ionic isn't displaying properly on my device
 
 ## For 1.0 release
++ Implement ToggleItems, RangeItems and make Toggles & Ranges LowerLevel
++ Implement just a List
 + Implement group view
 + !!reorganize directory tree
 	+ Change Utilities to Common
