@@ -25,7 +25,6 @@
 + SocketItem Single Press
 	- Implement lose focus -> collapse
 	- Make sure it will only collapse when main section is pressed (probably just wrap the range in a non-click-through-able div so I can't accidentally touch the li)
-+ Implement group view
 + !!reorganize directory tree
 	+ Change Utilities to Common
 + Add form checking to registration (validation, autofill, matching & strength)
@@ -37,6 +36,7 @@
 # WORKLOG
 
 **1.6.2016**
++ Implement group view
 + Swipe instead of press to access specific socket view
 + Add network settings to options page
 + Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
