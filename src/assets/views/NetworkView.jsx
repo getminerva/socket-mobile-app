@@ -2,7 +2,7 @@ var React = require('react');
 var Header = require('./Utilities.jsx').Header;
 var BackButton = require('./Utilities.jsx').BackButton;
 
-var OptionsView = React.createClass({
+var NetworkView = React.createClass({
 	contextTypes:  {
 		'bff': React.PropTypes.object
 	},
@@ -40,4 +40,4 @@ var OptionsView = React.createClass({
 	}
 });
 
-module.exports = OptionsView
+module.exports = NetworkView;
