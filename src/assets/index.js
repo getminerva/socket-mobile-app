@@ -8,6 +8,7 @@ var Route = require('react-router').Route;
 var SocketListView = require('./views/SocketListView.jsx');
 var SocketView = require('./views/SocketView.jsx').SocketView;
 var GroupListView = require('./views/GroupListView.jsx');
+var GroupView = require('./views/GroupView.jsx');
 var LoginView = require('./views/LoginView.jsx');
 var RegisterView = require('./views/RegisterView.jsx');
 var OptionsView = require('./views/OptionsView.jsx');
@@ -67,8 +68,9 @@ ReactDOM.render((
 			<IndexRoute component={SocketListView} onEnter={requireAuth}/>
 				<Route path='socket/:socketId' component={SocketView} />
 			<Route path='groups' component={GroupListView} onEnter={requireAuth}/>
+				<Route path='groups/:groupId' component={GroupView} />
 			<Route path='options' component={OptionsView} onEnter={requireAuth} />
-			<Route path='options/network' component={NetworkView} />
+				<Route path='options/network' component={NetworkView} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
