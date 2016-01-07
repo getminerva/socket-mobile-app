@@ -11,6 +11,7 @@ var GroupListView = require('./views/GroupListView.jsx');
 var LoginView = require('./views/LoginView.jsx');
 var RegisterView = require('./views/RegisterView.jsx');
 var OptionsView = require('./views/OptionsView.jsx');
+var NetworkView = require('./views/NetworkView.jsx');
 var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 
 // services
@@ -67,6 +68,7 @@ ReactDOM.render((
 				<Route path='socket/:socketId' component={SocketView} />
 			<Route path='groups' component={GroupListView} onEnter={requireAuth}/>
 			<Route path='options' component={OptionsView} onEnter={requireAuth} />
+			<Route path='options/network' component={NetworkView} />
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
