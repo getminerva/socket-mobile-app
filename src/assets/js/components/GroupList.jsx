@@ -79,19 +79,17 @@ var GroupListItem = React.createClass({
 	},
 	handleSwipe: function(ev) {
 		console.log("Swipe GroupItem");
-		this.props.history.push('/groups/' + this.props.id);
+		this.context.router.push('/groups/' + this.props.id);
 	},
 	componentDidMount: function() {
 		// Fetch Socket Info
 		var that = this;
-		this.context.bff.groupService.findById(this.props.id).then(function(socketInfo) {
+		this.context.bff.groupService.findById(this.props.id).then(function(groupInfo) {
 			that.setState({
-				'nickName': socketInfo.nickName,
-				'curBrightness': socketInfo.curBrightness,
-				'prvBrightness': socketInfo.prvBrightness,
-				'proximity': socketInfo.proximity,
-				'alarm': socketInfo.alarm,
-				'notification': socketInfo.notification
+				'groupName': groupInfo.groupName,
+				'curBrightness': groupInfo.curBrightness,
+				'prvBrightness': groupInfo.prvBrightness,
+				'proximity': groupInfo.proximity
 			});
 		}, function(error) {
 			console.log(error);
@@ -103,14 +101,14 @@ var GroupListItem = React.createClass({
 
 		mc.add(new Hammer.Tap({event: 'dbl-tap', taps: 2}));
 		mc.add(new Hammer.Tap({event: 'sgl-tap'}));
-		mc.add(new Hammer.Press({event: 'press'}));
+		mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL}));
 
 		mc.get('dbl-tap').recognizeWith('sgl-tap');
 		mc.get('sgl-tap').requireFailure('dbl-tap');
 
 		mc.on('sgl-tap', this.handleSglTap);
 		mc.on('dbl-tap', this.handleDblTap);
-		mc.on('press', this.handlePress);
+		mc.on('swipe', this.handleSwipe);
 	},
 	render: function() {
 		return (
