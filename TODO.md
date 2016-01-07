@@ -11,24 +11,23 @@
 + Make ButtonLinks & IconLinks
 + Add 'add-group' button
 + Make session service & session objects setting the user
-+ Add session service (maybe) and a session verification with APIs
 + Move synthetic/important methods into BFF
 + Update to react-router 2.0.0
 + Switch to ES7?
 + Implement bluetooth connectivity
 + Add splash screen?
-+ Figure out why Ionic isn't displaying properly on my device
 
 ## For 1.0 release
++ Make login screen yellow
++ Isolated the non-native look issue on apps
+	- Native apps need 'platform-{os}' as a css class to the body
 + SocketItem Single Press
 	- Implement lose focus -> collapse
 	- Make sure it will only collapse when main section is pressed (probably just wrap the range in a non-click-through-able div so I can't accidentally touch the li)
 + Implement group view
 + !!reorganize directory tree
 	+ Change Utilities to Common
-+ Add network settings to options page
 + Add form checking to registration (validation, autofill, matching & strength)
-+ Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
 + Add remove button to socketView
 + Swipe instead of press, maybe? to access specific socket view?
 + Style the SocketItem correctly
@@ -36,6 +35,11 @@
 + Distribute cordova APKs
 
 # WORKLOG
+
+**1.6.2016**
++ Add network settings to options page
++ Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
+
 
 **1.4.2016**
 + Reduce number of libs
