@@ -26,9 +26,17 @@ var OptionsView = React.createClass({
 	submitNameChange: function(ev) {
 		ev.preventDefault();
 		// Get the value
-		var newName = ev.target.firstChild.value;
-		console.log(newName);
-		// [TODO] Submit the change
+		confirm("Are you sure you want to change your username?", function(btn) {
+			if (btn == 1) {
+				var newName = ev.target.firstChild.value;
+				// [TODO] Submit the change
+			} else {
+				// Set it back to original
+				// TODO use session
+				this.setState({'userName': 'admin'});
+			}
+			console.log(this.state.userName);
+		}, "Change Username");
 	},
 	componentWillMount: function() {
 		// [TODO] Get name from session
