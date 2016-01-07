@@ -16,6 +16,7 @@
 + Switch to ES7?
 + Implement bluetooth connectivity
 + Add splash screen?
++ Add animation to list-item swiping
 
 ## For 1.0 release
 + Figure out why Ionic isn't displaying properly on my device
@@ -29,7 +30,6 @@
 	+ Change Utilities to Common
 + Add form checking to registration (validation, autofill, matching & strength)
 + Add remove button to socketView
-+ Swipe instead of press to access specific socket view
 + Style the SocketItem correctly
 + Distribute cordova APKs
 + Add form checking to registration (validation, autofill, matching & strength)
@@ -37,6 +37,7 @@
 # WORKLOG
 
 **1.6.2016**
++ Swipe instead of press to access specific socket view
 + Add network settings to options page
 + Make options page into inputs listing the info (username & {admin}), instead of just 'change X'
 
