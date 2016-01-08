@@ -173,14 +173,14 @@ var SocketListItem = React.createClass({
 		return (
 			<li className="item item-clickable" key={this.props.key}>
 				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
-				<h4>
-					{this.props.nickName}
-				</h4>
-				<SocketItemIcons
-					proximity={this.props.proximity}
-					alarm={this.props.alarm}
-					notification={this.props.notification}
-				/>
+				{this.props.nickName}
+				<div className='item-note'>
+					<SocketItemIcons
+						proximity={this.props.proximity}
+						alarm={this.props.alarm}
+						notification={this.props.notification}
+					/>
+				</div>
 				{range}
 			</li>
 		)
