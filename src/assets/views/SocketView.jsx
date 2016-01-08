@@ -20,6 +20,7 @@ var SocketView = React.createClass({
 		return ({
 			'uuid': 'xx-xx-xx-xx-xx-xx',
 			'macAddress': '00:00:00:00:00:00',
+			'originalName': 'undefined',
 			'nickName': 'undefined',
 			'rssi': 0,
 			'curBrightness': 75,
@@ -66,19 +67,23 @@ var SocketView = React.createClass({
 			console.log(error);
 		});
 	},
+	handleNameChange: function(ev) {
+		this.setState({'nickName': ev.target.value});
+	},
 	submitNameChange: function(ev) {
-		// TODO: Change name of Socket
-		console.log(ev);
-
+		ev.preventDefault();
+		var newName = this.state.nickName;
 		// Verify name change is fine.
-		if (confirm('Are you sure to want to change \'' + this.state.nickName + '\' to \'' + newName + '\'?' )) {
-			// If so, do it
-			//  [TODO] Update API
-			this.setState({'nickName': ev.target.value});
-		} else {
-			// If not, change the value back to normal
-			ev.target.value = this.state.nickName;
-		}
+		confirm('Are you sure to want to change \'' + this.state.originalName + '\' to \'' + newName + '\'?' , function (btn) {
+			if (btn == 1) {
+				// If so, do it
+				//  [TODO] Update API
+				this.setState({'originalName': this.state.nickName});
+			} else {
+				// [TODO] Else, change it back to the original
+				this.setState({'nickName': this.originalName });
+			}
+		}, "Rename Socket", ["Yes", "No"]);
 	},
 	componentWillMount: function() {
 		// Load the socket info from API
@@ -87,6 +92,7 @@ var SocketView = React.createClass({
 		this.context.bff.socketService.findById(sId).then(function(socketInfo) {
 			// console.log(socketInfo);
 			that.setState({
+				'originalName': socketInfo.nickName,
 				'nickName': socketInfo.nickName,
 				'curBrightness': socketInfo.curBrightness,
 				'proximity': socketInfo.proximity
@@ -108,15 +114,17 @@ var SocketView = React.createClass({
 								<div className='col'>
 								</div>
 								<div className='col col-75'>
-									<ul className='list'>
-										<TextInputItem
-											value={this.state.nickName}
-											onChange={this.submitNameChange}
-										/>
-										<li className='item'>
-											{this.state.uuid}
-										</li>
-									</ul>
+									<form onSubmit={this.submitNameChange}>
+										<label className='item item-input item-stacked-label'>
+											<span className='input-label'>
+												{this.state.uuid}
+											</span>
+											<input type='text'
+												value={this.state.nickName}
+												onChange={this.handleNameChange}
+											/>
+										</label>
+									</form>
 								</div>
 							</div>
 						</li>
