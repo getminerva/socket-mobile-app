@@ -77,7 +77,7 @@ gulp.task('watch-html', function() {
 });
 
 gulp.task('watch-css', function() {
-	gulp.watch(paths.src.css + 'index.css', ['copy-css']);
+	gulp.watch(paths.src.CSS + 'index.css', ['copy-css']);
 });
 
 gulp.task('watch-js', function() {
