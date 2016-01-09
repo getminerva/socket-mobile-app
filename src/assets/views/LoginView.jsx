@@ -1,5 +1,6 @@
 var React = require('React');
-var BFF = require('../js/services/BFF.js');
+var Link = require('react-router').Link;
+var Footer = require('./Utilities.jsx').Footer;
 
 var LoginView = React.createClass({
 	contextTypes: {
@@ -8,63 +9,77 @@ var LoginView = React.createClass({
 	getInitialState: function() {
 		return ({
 			'error': false,
+			'errorMsg': '',
 			'loggedIn': false
 		});
 	},
-	updateAuth: function(loggedIn) {
+	updateAuth: function(loggedIn, errorMsg) {
 		if (loggedIn) {
 			this.setState({'error': false});
 			this.props.history.push('/');
 		} else {
-			this.setState({'error': true});
+			console.log(errorMsg);
+			this.setState({
+				'error': true,
+				'errorMsg': errorMsg
+			});
 			console.log('Login failure.');
 		}
 	},
 	handleLogin: function(ev) {
+		ev.preventDefault();
 		var uname = document.querySelector('.input-user-name').value;
 		var pw = document.querySelector('.input-pass-word').value;
 		// console.log(uname, pw);
 		this.context.bff.login(uname, pw, this.updateAuth);
 	},
-	handleRegister: function(ev) {
-		// [TODO] push to registration flow but with the given info
-		this.props.history.push('/register');
-	},
 	componentWillMount: function() {
+		document.querySelector('#app-container').className = 'energized-bg';
 		this.setState({'loggedIn': this.context.bff.loggedIn()});
-		this.context.bff.onChange = this.updateAuth;
 	},
 	componentDidMount: function() {
-		document.querySelector('.button-register').addEventListener('touchstart', this.handleRegister);
 		document.querySelector('.button-login').addEventListener('touchstart', this.handleLogin);
-
+	},
+	componentWillUnmount: function() {
+		document.querySelector('#app-container').className = '';
 	},
 	render: function() {
 		return (
-			<div className='content'>
-				<div className='floating-header'>
-					<h1>Socket</h1>
-				</div>
-				<div className='list list-inset'>
-					<label className='item item-input'>
-						<span className='input-label'>Username</span>
-						<input type='text' className='input-user-name'/>
-					</label>
-					<label className='item item-input'>
-						<span className='input-label'>Password</span>
-						<input type='password' className='input-pass-word'/>
-					</label>
-				</div>
-				<div className='row'>
-					<div className='col col-50'>
-						<button
-							className='button button-block button-energized button-register'>Register</button>
+			<div className='app'>
+				<div className='content has-header'>
+					<div className='row'>
+						<h1>Socket</h1>
 					</div>
-					<div className='col col-50'>
+					<div className='row'>
+						<div className='col text-center assertive'>
+							{this.state.errorMsg}
+						</div>
+					</div>
+					<div className='list list-inset'>
+						<label className='item item-input rounded'>
+							<input type='text'
+								className='input-user-name'
+								placeholder='Username'/>
+						</label>
+					</div>
+					<form onSubmit={this.handleLogin} className=' list list-inset'>
+						<label className='item item-input rounded'>
+							<input type='password'
+								className='input-pass-word'
+								placeholder='Password'/>
+						</label>
+					</form>
+					<div className='row'>
 						<button
-							className='button button-block button-energized button-login'>Login</button>
+							className='button button-block button-dark button-login'>Login</button>
+					</div>
+					<div className='row'>
+						<Link to='/forgot-password' className='col text-center'>Forgot Password?</Link>
 					</div>
 				</div>
+				<Footer color='light'>
+					<Link to='/register' className='button button-clear title'>Sign Up for Socket</Link>
+				</Footer>
 			</div>
 		);
 	}
