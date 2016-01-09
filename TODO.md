@@ -7,7 +7,7 @@
 + Make '/groups' indexroute & corresponding changes
 + Integrate Redux
 + Implement a content component that adjusts for header/footer
-+ backend
++ backend & bff
 + Make ButtonLinks & IconLinks
 + Add 'add-group' button
 + Make session service & session objects setting the user
@@ -19,9 +19,10 @@
 + Add animation to list-item swiping
 
 ## For 1.0 release
++ Add splashscreen
++ Remove tabs + Group section for now
 + Figure out why Ionic isn't displaying properly on my device
 	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
-+ Make login screen yellow
 + SocketItem Single Press
 	- Implement lose focus -> collapse
 	- Make sure it will only collapse when main section is pressed (probably just wrap the range in a non-click-through-able div so I can't accidentally touch the li)
@@ -31,9 +32,14 @@
 + Add remove button to socketView
 + Style the SocketItem correctly
 + Distribute cordova APKs
-+ Add form checking to registration (validation, autofill, matching & strength)
 
 # WORKLOG
+
+**1.9.2016**
++ Make login screen yellow
++ Modify login page as per design meeting
+	+ Create Footer component
+	+ Modify bff to return login error msgs
 
 **1.6.2016**
 + Implement group view
