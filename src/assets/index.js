@@ -36,11 +36,7 @@ const App = React.createClass({
 		});
 	},
 	render: function() {
-		return (
-			<div>
-				{this.props.children}
-			</div>
-		);
+		return (this.props.children);
 	}
 });
 
@@ -74,4 +70,4 @@ ReactDOM.render((
 			<Route path='add' component={BluetoothAddView} />
 		</Route>
 	</Router>
-), document.getElementById('app'));
+), document.getElementById('app-container'));
