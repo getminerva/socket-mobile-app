@@ -26,7 +26,7 @@ var BFF = function() {
 		cb = arguments[arguments.length - 1];
 		if (localStorage.token) {
 			if (cb) {
-				cb(true);
+				cb(true, 'No Error.');
 			}
 			this.onChange(true);
 			return ;
@@ -35,13 +35,13 @@ var BFF = function() {
 		this.userService.login(uname, pw).then(function(result) {
 			localStorage.token = result.token;
 			if (cb) {
-				cb(true);
+				cb(true, 'No error.');
 			}
 			that.onChange(true);
 		}, function(error) {
 			console.log(error);
 			if (cb) {
-				cb(false);
+				cb(false, error.message);
 			}
 			that.onChange(false);
 		});

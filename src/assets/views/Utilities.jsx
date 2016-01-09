@@ -38,6 +38,22 @@ var Header = React.createClass({
 	}
 });
 
+var Footer = React.createClass({
+	getDefaultProps: function() {
+		return ({
+			'color': 'energized',
+			'className': ''
+		});
+	},
+	render: function() {
+		return (
+			<div className={'bar bar-footer bar-' + this.props.color + ' ' + this.props.className}>
+				{this.props.children}
+			</div>
+		);
+	}
+});
+
 var TabItem = React.createClass({
 	contextTypes: {
 		'router': React.PropTypes.object
@@ -101,6 +117,7 @@ var Tabs = React.createClass({
 module.exports = {
 	BackButton: BackButton,
 	Header: Header,
+	Footer: Footer,
 	Tabs: Tabs,
 	TabItem: TabItem
 }
