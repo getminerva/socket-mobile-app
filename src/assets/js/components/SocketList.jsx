@@ -9,7 +9,7 @@ var SocketStateIndicator = React.createClass({
 		});
 	},
 	render: function() {
-		var icon = 'icon ion-record ';
+		var icon = 'state icon ion-record ';
 		return (
 			<i className={ (this.props.on) ? icon + 'state-on': icon + 'state-off'}></i>
 		);
@@ -29,10 +29,10 @@ var SocketItemIcons = React.createClass({
 		var ica = 'icon ion-android-alarm-clock ';
 		var icn = 'icon ion-android-notifications ';
 		return (
-			<div>
-				<span className={this.props.proximity ? icp + 'icon-active' : icp + 'icon-inactive'}></span>
-				<span className={this.props.alarm ? ica + 'icon-active' : ica + 'icon-inactive'}></span>
-				<span className={this.props.notification ? icn + 'icon-active' : icn + 'icon-inactive'}></span>
+			<div className='state-icons'>
+				<span className={this.props.proximity ? icp + 'dark' : icp}></span>
+				<span className={this.props.alarm ? ica + 'dark' : ica}></span>
+				<span className={this.props.notification ? icn + 'dark' : icn}></span>
 			</div>
 		);
 	}
@@ -174,13 +174,11 @@ var SocketListItem = React.createClass({
 			<li className="item item-clickable" key={this.props.key}>
 				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
 				{this.props.nickName}
-				<div className='item-note'>
-					<SocketItemIcons
-						proximity={this.props.proximity}
-						alarm={this.props.alarm}
-						notification={this.props.notification}
-					/>
-				</div>
+				<SocketItemIcons
+					proximity={this.props.proximity}
+					alarm={this.props.alarm}
+					notification={this.props.notification}
+				/>
 				{range}
 			</li>
 		)
