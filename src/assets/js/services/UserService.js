@@ -38,7 +38,7 @@ var UserService = function() {
 			if (user != null) {
 				resolve(user);
 			} else {
-				reject(Error("Cannot find user with usernam '" + uname + "'"));
+				reject(Error("Cannot find user with username '" + uname + "'"));
 			}
 		});
 
