@@ -26,15 +26,17 @@ var ToggleItem = React.createClass({
 	getDefaultProps: function() {
 		return ({
 			'color': 'energized',
+			'className': '',
 			'checked': false,
 			'onChange': null
 		})
 	},
 	render: function() {
 		return (
-			<div className='item item-toggle'>
+			<div className={'item item-toggle' + ' ' + this.props.className}>
 				{this.props.children}
 				<Toggle
+					color={this.props.color}
 					checked={this.props.checked}
 					onChange={this.props.onChange}
 				/>
@@ -48,6 +50,7 @@ var Range = React.createClass({
 		return ({
 			'color': 'energized',
 			'value': 50,
+			'className': '',
 			'onChange': null
 		});
 	},
