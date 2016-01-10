@@ -24,6 +24,9 @@
 + Implement a content component that adjusts for header/footer
 + Make session service & session objects setting the user
 + Add minification to the build process
++ Style the socketItem better
+	- Vertically align this to middle line
+	- Add icons to range item
 
 ## For 0.1 release
 + Add splashscreen
@@ -33,15 +36,16 @@
 	+ Change Utilities to Common
 	+ Integrate Redux
 + Add form checking to registration (validation, autofill, matching & strength)
-+ Add remove button to socketView
 + Distribute cordova APKs
-+ Style the socketItem better
-	- Vertically align this to middle line
-	- Add icons to range item
 
 # WORKLOG
 
 **1.10.2016**
++ SocketView
+	+ Reorganize beginning section
+	+ Add brightness label
+	+ Make proximity sense a section by itself with a distance item
+	+ Add remove button to socketView (non-functional)
 
 **1.9.2016**
 + Remove tabs + Group section for now
