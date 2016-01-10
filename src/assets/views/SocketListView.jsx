@@ -7,7 +7,8 @@ var SocketList = require('../js/components/SocketList.jsx');
 
 var SocketListView = React.createClass({
 	contextTypes: {
-		'bff': React.PropTypes.object
+		'bff': React.PropTypes.object,
+		'router': React.PropTypes.object
 	},
 	getInitialState: function() {
 		return ({
@@ -59,7 +60,7 @@ var SocketListView = React.createClass({
 				// </Tabs>
 				}
 				<div className="content has-header">
-					<SocketList sockets={this.state.items} history={this.props.history}/>
+					<SocketList sockets={this.state.items}/>
 				</div>
 			</div>
 		);

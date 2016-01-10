@@ -110,7 +110,7 @@ var SocketListItem = React.createClass({
 	},
 	handlePress: function(ev) {
 		console.log("Press brightness");
-		this.props.history.push('/socket/' + this.props.id);
+		this.context.router.push('/socket/' + this.props.id);
 	},
 	componentDidMount: function() {
 		// Fetch Socket Info
@@ -171,8 +171,7 @@ var SocketListItem = React.createClass({
 var SocketList = React.createClass({
 	getDefaultProps: function() {
 		return ({
-			'sockets': [],
-			'history': null
+			'sockets': []
 		});
 	},
 	getInitialState: function() {
