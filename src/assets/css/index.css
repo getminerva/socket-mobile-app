@@ -46,3 +46,16 @@ li.item-clickable:active {
 .state-off {
 	color: #555;
 }
+
+/*INPUTS*/
+
+.item-input input[type=number] {
+	display: inline-block;
+	position: relative;
+	float: right;
+	margin: 0 10px;
+	width: 64px;
+
+	/*max-width: 32px;*/
+	border-bottom: 2px solid #ddd;
+}
