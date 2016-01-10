@@ -1,4 +1,4 @@
-body {
+#app-container {
 	height: 100vh;
 }
 
@@ -18,10 +18,25 @@ li.item-clickable:active {
 	color: #bbb;
 }
 
+.state {
+	margin-right: 6px;
+	font-size: 24px;
+}
+
 .state-indicator {
 	width: 32px;
 	height: 32px;
 	background: #bbb;
+}
+
+.state-icons {
+	float: right;
+	color: #bbb;
+	font-size: 20px;
+}
+
+.state-icons .icon {
+	margin-left: 4px;
 }
 
 .state-on {

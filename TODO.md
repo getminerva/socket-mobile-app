@@ -1,39 +1,58 @@
 # TODO
 
-## 1.0+
+## 0.2+
 + Add transitions
 + Research best use of router...?
-+ Add minification to the build process
-+ Make '/groups' indexroute & corresponding changes
-+ Integrate Redux
-+ Implement a content component that adjusts for header/footer
-+ backend
++ Groups makes a return!
+	+ Make '/groups' indexroute & corresponding changes
+	+ Add 'add-group' button
+	+ Tabs Implementation
+		- lmfao, it's simple.
+		- Make the tab controls switch the state of the Page component.
+		- render different content depending on the state.tab.
 + Make ButtonLinks & IconLinks
-+ Add 'add-group' button
-+ Make session service & session objects setting the user
-+ Move synthetic/important methods into BFF
 + Update to react-router 2.0.0
 + Switch to ES7?
-+ Implement bluetooth connectivity
-+ Add splash screen?
-+ Add animation to list-item swiping
 
-## For 1.0 release
+## For 0.2 release
++ Implement bluetooth connectivity
++ Add animation to list-item swiping
++ Backend & BFF
+	+ Move synthetic/important methods into BFF
+	+ Link users to sockets
+	+ Implement backend
++ Implement a content component that adjusts for header/footer
++ Make session service & session objects setting the user
++ Add minification to the build process
+
+## For 0.1 release
++ Add splashscreen
 + Figure out why Ionic isn't displaying properly on my device
 	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
-+ Make login screen yellow
++ !!reorganize directory tree
+	+ Change Utilities to Common
+	+ Integrate Redux
++ Add form checking to registration (validation, autofill, matching & strength)
++ Add remove button to socketView
++ Distribute cordova APKs
++ Style the socketItem better
+	- Vertically align this to middle line
+	- Add icons to range item
+
+# WORKLOG
+
+**1.10.2016**
+
+**1.9.2016**
++ Remove tabs + Group section for now
 + SocketItem Single Press
 	- Implement lose focus -> collapse
 	- Make sure it will only collapse when main section is pressed (probably just wrap the range in a non-click-through-able div so I can't accidentally touch the li)
-+ !!reorganize directory tree
-	+ Change Utilities to Common
-+ Add form checking to registration (validation, autofill, matching & strength)
-+ Add remove button to socketView
-+ Style the SocketItem correctly
-+ Distribute cordova APKs
-+ Add form checking to registration (validation, autofill, matching & strength)
-
-# WORKLOG
++ Layout the SocketItem correctly
++ Make login screen yellow
++ Modify login page as per design meeting
+	+ Create Footer component
+	+ Modify bff to return login error msgs
 
 **1.6.2016**
 + Implement group view

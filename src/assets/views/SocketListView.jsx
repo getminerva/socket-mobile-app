@@ -42,7 +42,7 @@ var SocketListView = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
+			<div className='app'>
 				<Header>
 					<div className='title'>Socket</div>
 					<Link
@@ -52,11 +52,13 @@ var SocketListView = React.createClass({
 						to='/options'
 						className='button button-clear icon ion-gear-b'></Link>
 				</Header>
-				<Tabs os='android'>
-					<TabItem to='/'>SINGLE</TabItem>
-					<TabItem to='/groups'>GROUPS</TabItem>
-				</Tabs>
-				<div className="content has-subheader">
+				{
+				// <Tabs os='android'>
+				// 	<TabItem to='/'>SINGLE</TabItem>
+				// 	<TabItem to='/groups'>GROUPS</TabItem>
+				// </Tabs>
+				}
+				<div className="content has-header">
 					<SocketList sockets={this.state.items} history={this.props.history}/>
 				</div>
 			</div>

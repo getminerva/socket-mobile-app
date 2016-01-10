@@ -9,9 +9,9 @@ var SocketStateIndicator = React.createClass({
 		});
 	},
 	render: function() {
-		var icon = 'icon ion-record ';
+		var icon = 'state icon ion-record ';
 		return (
-			<i className={ (this.props.on) ? icon + 'state-on': icon + 'state-off'}></i>
+			<i className={ icon + (this.props.on ? 'state-on': 'state-off') }></i>
 		);
 	}
 });
@@ -29,10 +29,10 @@ var SocketItemIcons = React.createClass({
 		var ica = 'icon ion-android-alarm-clock ';
 		var icn = 'icon ion-android-notifications ';
 		return (
-			<div>
-				<span className={this.props.proximity ? icp + 'icon-active' : icp + 'icon-inactive'}></span>
-				<span className={this.props.alarm ? ica + 'icon-active' : ica + 'icon-inactive'}></span>
-				<span className={this.props.notification ? icn + 'icon-active' : icn + 'icon-inactive'}></span>
+			<div className='state-icons'>
+				<span className={icp + (this.props.proximity ? 'dark' : '')}></span>
+				<span className={ica + (this.props.alarm ? 'dark' : '')}></span>
+				<span className={icn + (this.props.notification ? 'dark' : '')}></span>
 			</div>
 		);
 	}
@@ -51,34 +51,18 @@ var SocketListItem = React.createClass({
 			'proximity': false,
 			'alarm': false,
 			'notification': false,
+			'toggled': false
 		});
 	},
 	getInitialState: function() {
 		return ({
 			curBrightness: 50,
-			prvBrightness: 0,
-			toggled: false
+			prvBrightness: 0
 		});
 	},
-	handleTap: function(ev) {
-		if (ev.tapCount == 2) {
-			this.handleDblTap(ev);
-		} else {
-			this.handleSglTap(ev);
-		}
-	},
-	handleSglTap: function(ev) {
-		// TODO: Toggle brightness slider
-		console.log("Toggle brightness slider");
-		this.setState({'toggled': !this.state.toggled});
-	},
-	unfocus: function(ev) {
-		this.setState({'toggled': false});
-	},
 	changeBrightness: function(ev) {
-		// TODO: Change the brightness of the socket [real-time]
 		var level = ev.target.value;
-		console.log(level);
+		// console.log(level);
 		// [TODO] Try it via BT
 
 		// [TODO] Try it via web (if away)
@@ -94,7 +78,6 @@ var SocketListItem = React.createClass({
 		});
 	},
 	handleDblTap: function(ev) {
-		// TODO: Toggle brightness
 		console.log("Toggle brightness");
 		var oldBrightness = this.state.curBrightness;
 		var newBrightness = (this.state.curBrightness > 0 ) ? 0 : this.state.prvBrightness;
@@ -156,13 +139,13 @@ var SocketListItem = React.createClass({
 		mc.get('dbl-tap').recognizeWith('sgl-tap');
 		mc.get('sgl-tap').requireFailure('dbl-tap');
 
-		mc.on('sgl-tap', this.handleSglTap);
+		mc.on('sgl-tap', this.props.handleSglTap);
 		mc.on('dbl-tap', this.handleDblTap);
 		mc.on('press', this.handlePress);
 	},
 	render: function() {
 		var range;
-		if (this.state.toggled) {
+		if (this.props.toggled) {
 			range = (
 				<Range
 					value={this.state.curBrightness}
@@ -171,11 +154,9 @@ var SocketListItem = React.createClass({
 			);
 		}
 		return (
-			<li className="item item-clickable" key={this.props.key}>
+			<li className="item item-clickable">
 				<SocketStateIndicator on={(this.state.curBrightness > 0)} />
-				<h4>
-					{this.props.nickName}
-				</h4>
+				{this.props.nickName}
 				<SocketItemIcons
 					proximity={this.props.proximity}
 					alarm={this.props.alarm}
@@ -194,22 +175,33 @@ var SocketList = React.createClass({
 			'history': null
 		});
 	},
+	getInitialState: function() {
+		return ({
+			'itemToggled': -1		// -1 means nothing is toggled
+		});
+	},
+	handleSglTap: function(i) {
+		var itemToggled = this.state.itemToggled;
+		if (itemToggled != -1 && itemToggled == i) {
+			this.setState({'itemToggled' : -1});
+		} else {
+			this.setState({'itemToggled' : i});
+		}
+	},
 	render: function() {
-		var history = this.props.history;
-
-		var key = 0;
-		var listItems = this.props.sockets.map(function(socket) {
-			key += 1;
+		var that = this;
+		var listItems = this.props.sockets.map(function(socket, i) {
 			return (
 				<SocketListItem
-					key={key}
+					key={i}
 					id={socket.id}
 					nickName={socket.nickName}
 					macId={socket.macId}
 					proximity={socket.proximity}
 					alarm={socket.alarm}
 					notification={socket.notification}
-					history={history}
+					toggled={that.state.itemToggled == i}
+					handleSglTap={that.handleSglTap.bind(that, i)}
 				/>
 			);
 		});
