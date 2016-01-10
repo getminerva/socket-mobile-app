@@ -89,7 +89,7 @@ var SocketView = React.createClass({
 		}
 	},
 	deleteSocket: function(ev) {
-		confirm('Are you sure you want to remove ' + this.state.originalName + '? This action cannot be undone.' function(btn) {
+		confirm('Are you sure you want to remove ' + this.state.originalName + '? This action cannot be undone.', function(btn) {
 			// TODO
 			if (btn == 1) {
 				console.log('Deleting ' + this.state.originalName + '...');
