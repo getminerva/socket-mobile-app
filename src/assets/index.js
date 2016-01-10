@@ -51,6 +51,7 @@ document.addEventListener('deviceready', function() {
 	if (cordova.platformId == 'android') {
 		StatusBar.backgroundColorByHexString("#997800");
 	}
+	navigator.splashscreen.hide();
 	window.alert = navigator.notification.alert;
 	window.confirm = navigator.notification.confirm;
 	window.prompt = navigator.notification.prompt;
