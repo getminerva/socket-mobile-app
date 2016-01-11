@@ -1,9 +1,9 @@
 var React = require('react');
 var Header = require('./Utilities.jsx').Header;
 var BackButton = require('./Utilities.jsx').BackButton;
-var RangeItem = require('../js/components/Common.jsx').RangeItem;
-var ToggleItem = require('../js/components/Common.jsx').ToggleItem;
-var TextInputItem = require('../js/components/Common.jsx').TextInputItem;
+var RangeItem = require('../components/Common.jsx').RangeItem;
+var ToggleItem = require('../components/Common.jsx').ToggleItem;
+var TextInputItem = require('../components/Common.jsx').TextInputItem;
 
 var GroupView = React.createClass({
 	contextTypes: {

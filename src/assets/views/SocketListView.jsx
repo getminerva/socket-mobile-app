@@ -3,7 +3,7 @@ var Link = require('react-router').Link;
 var Header = require('./Utilities.jsx').Header;
 var Tabs = require('./Utilities.jsx').Tabs;
 var TabItem = require('./Utilities.jsx').TabItem;
-var SocketList = require('../js/components/SocketList.jsx');
+var SocketList = require('../components/SocketList.jsx');
 
 var SocketListView = React.createClass({
 	contextTypes: {

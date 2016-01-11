@@ -1,7 +1,7 @@
 var React = require('react');
 var Header = require('./Utilities.jsx').Header;
 var BackButton = require('./Utilities.jsx').BackButton;
-var ToggleItem = require('../js/components/Common.jsx').ToggleItem;
+var ToggleItem = require('../components/Common.jsx').ToggleItem;
 
 var DiscoveredItem = React.createClass({
 	getDefaultProps: function() {

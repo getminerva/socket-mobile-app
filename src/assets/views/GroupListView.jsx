@@ -3,7 +3,7 @@ var Link = require('react-router').Link;
 var Header = require('./Utilities.jsx').Header;
 var Tabs = require('./Utilities.jsx').Tabs;
 var TabItem = require('./Utilities.jsx').TabItem;
-var GroupList = require('../js/components/GroupList.jsx');
+var GroupList = require('../components/GroupList.jsx');
 
 var GroupListView = React.createClass({
 	contextTypes: {
