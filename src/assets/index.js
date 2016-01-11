@@ -16,7 +16,7 @@ var NetworkView = require('./views/NetworkView.jsx');
 var BluetoothAddView = require('./views/BluetoothAddView.jsx');
 
 // services
-var BFF = require('./js/services/BFF.js');
+var BFF = require('./services/BFF.js');
 const Bff = new BFF();
 
 const App = React.createClass({
