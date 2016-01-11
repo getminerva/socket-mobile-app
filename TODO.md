@@ -44,6 +44,12 @@
 
 # WORKLOG
 
+**1.11.2016**
++ Redux
+	- Reorganize directory tree
+		- Fix breaking changes in the gulpfile, views, www/*
+	- Install redux, redux-simple-router
+
 **1.10.2016**
 + Add splashscreen
 + SocketView
