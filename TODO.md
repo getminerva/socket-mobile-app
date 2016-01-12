@@ -40,11 +40,11 @@
 	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
 + Add form checking to registration (validation, autofill, matching & strength)
 + Fix BackButton touch-event (don't break the line)
-+ Fix logout (btn==1 confirm)
 
 # WORKLOG
 
 **1.11.2016**
++ Fix logout (btn==1 confirm)
 + Vatsal figured out proper sizing for the splash images, nice nice
 	+ See: http://stackoverflow.com/questions/13487124/android-splash-screen-sizes-for-ldpi-mdpi-hdpi-xhdpi-displays-eg-1024x76
 + Redux
