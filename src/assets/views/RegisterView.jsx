@@ -35,7 +35,6 @@ var RegisterView = React.createClass({
 	},
 	validateInputs: function() {
 		// Check if all values are present
-		console.log("Validating inputs...");
 		var state = this.state;
 		if (
 			state.email.length == 0 ||
@@ -61,7 +60,6 @@ var RegisterView = React.createClass({
 			return false;
 		}
 
-		console.log(this.state.errorMsg);
 		// Everything's A-OK
 		this.setState({
 			'error': false,
@@ -97,18 +95,22 @@ var RegisterView = React.createClass({
 	},
 	componentDidMount: function() {
 		// FIXME: change back to touchend after testing functions
+		document.querySelector('#app-container').className = 'energized-bg';
 		document.querySelector('.button-register').addEventListener('click', this.handleRegister);
+	},
+	componentWillUnmount: function() {
+		document.querySelector('#app-container').className = '';
 	},
 	render: function() {
 		return (
 			<div className='app'>
-				<Header>
+				<Header color='clear'>
 					<BackButton>Back</BackButton>
 					<div className='title'>Register</div>
 				</Header>
 				<div className='content has-header'>
 					<div className='row'>
-						<div className='col assertive'>
+						<div className='col text-center assertive'>
 							{this.state.errorMsg}
 						</div>
 					</div>
@@ -150,7 +152,7 @@ var RegisterView = React.createClass({
 					</div>
 					<div className='row'>
 						<div className='col'>
-							<button className='button button-block button-energized button-register'>Register</button>
+							<button className='button button-block button-dark button-register'>Register</button>
 						</div>
 					</div>
 				</div>
