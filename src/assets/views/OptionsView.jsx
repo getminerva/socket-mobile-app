@@ -14,10 +14,12 @@ var OptionsView = React.createClass({
 	},
 	handleLogout: function(ev) {
 		var that = this;
-		 confirm("Are you sure you want to logout?", function() {
-			 that.context.bff.logout();
-			 that.context.router.push('/');
-		 }, "Logout");
+		confirm("Are you sure you want to logout?", function(btn) {
+			if (btn == 1) {
+				that.context.bff.logout();
+				that.context.router.push('/');
+			}
+		}, "Logout", ['Logout', 'Cancel']);
 	},
 	handleNameChange: function(ev) {
 		var newName = ev.target.value;
