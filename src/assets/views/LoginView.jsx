@@ -46,7 +46,7 @@ var LoginView = React.createClass({
 	render: function() {
 		return (
 			<div className='app'>
-				<div className='content has-header'>
+				<div className='content has-header has-footer'>
 					<div className='row'>
 						<h1>Socket</h1>
 					</div>
@@ -74,10 +74,10 @@ var LoginView = React.createClass({
 							className='button button-block button-dark button-login'>Login</button>
 					</div>
 					<div className='row'>
-						<Link to='/forgot-password' className='col text-center'>Forgot Password?</Link>
+						<Link to='/forgot-password' className='col text-center light'>Forgot Password?</Link>
 					</div>
 				</div>
-				<Footer color='light'>
+				<Footer color='clear'>
 					<Link to='/register' className='button button-clear title'>Sign Up for Socket</Link>
 				</Footer>
 			</div>
