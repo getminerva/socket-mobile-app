@@ -4,70 +4,149 @@ var BackButton = require('./Utilities.jsx').BackButton;
 
 var RegisterView = React.createClass({
 	contextTypes: {
+		'router': React.PropTypes.object,
 		'bff': React.PropTypes.object
 	},
 	getInitialState: function() {
 		return ({
-			'pw-match': false
+			'error': false,
+			'errorMsg': '',
+			'email': '',
+			'userName': '',
+			'passWord': '',
+			'passWordConf': '',
+			'pwMatch': true
 		});
 	},
-	pwChange: function(ev) {
-		// Make sure both passwords arethe same
+	updateUserName: function(ev) {
+		this.setState({'userName': ev.target.value})
+	},
+	updateEmail: function(ev) {
+		this.setState({'email': ev.target.value})
+	},
+	updatePassWord: function(ev) {
+		this.setState({'passWord': ev.target.value})
+	},
+	updatePassWordConf: function(ev) {
+		this.setState({
+			'passWordConf': ev.target.value,
+			'pwMatch': this.state.passWord === ev.target.value,
+		});
+	},
+	validateInputs: function() {
+		// Check if all values are present
+		console.log("Validating inputs...");
+		var state = this.state;
+		if (
+			state.email.length == 0 ||
+			state.userName.length == 0 ||
+			state.passWord.length == 0 ||
+			state.passWordConf.length == 0
+		) {
+			this.setState({
+				'error': true,
+				'errorMsg': "One or more values are missing."
+			});
+			return false;
+		}
+		// TODO: Check if e-mail has been used
+		// TODO: Check if user exists
+
+		// Check if passwords match
+		if (!state.pwMatch) {
+			this.setState({
+				'error': true,
+				'errorMsg': "Passwords don't match."
+			});
+			return false;
+		}
+
+		console.log(this.state.errorMsg);
+		// Everything's A-OK
+		this.setState({
+			'error': false,
+			'errorMsg': ''
+		})
+		return true;
 	},
 	handleRegister: function(ev) {
+		ev.preventDefault();
 		// Make sure all inputs are valid
-		var email = document.querySelector('.input-email').value;
-		var userName = document.querySelector('.input-user-name').value;
-		var passWord = document.querySelector('.input-pass-word').value;
-
-		console.log("Registering...");
-		var that = this;
-		this.context.bff.userService.createUser({
-			'email': email,
-			'userName': userName,
-			'passWord': passWord
-		}).then(function(newUser) {
-			// log em in
-			console.log("Welcome to Socket, " + userName);
-			that.context.bff.login(userName, passWord, function() {
-				that.props.history.push('/');
+		if (this.validateInputs()) {
+			console.log("Registering...");
+			var that = this;
+			this.context.bff.userService.createUser({
+				'email': that.state.email,
+				'userName': that.state.userName,
+				'passWord': that.state.passWord
+			}).then(function(newUser) {
+				// log em in
+				that.context.bff.login(userName, passWord, function() {
+					that.context.router.push('/');
+				});
+			}, function(error) {
+				this.setState({
+					'error': true,
+					'errorMsg': error.message
+				});
+				console.log(error);
 			});
-		}, function(error) {
-			console.log(error);
-		});
+		} else {
+			console.log(this.state.errorMsg);
+		}
 	},
 	componentDidMount: function() {
-		var pwInputs = document.getElementsByClassName('input-pass-word');
-
-		pwInputs[0].addEventListener(this.pwChange);
-		pwInputs[1].addEventListener(this.pwChange);
-
-		document.querySelector('.button-register').addEventListener('touchend', this.handleRegister);
+		// FIXME: change back to touchend after testing functions
+		document.querySelector('.button-register').addEventListener('click', this.handleRegister);
 	},
 	render: function() {
 		return (
-			<div>
+			<div className='app'>
 				<Header>
-					<BackButton history={this.props.history}>Back</BackButton>
+					<BackButton>Back</BackButton>
+					<div className='title'>Register</div>
 				</Header>
 				<div className='content has-header'>
+					<div className='row'>
+						<div className='col assertive'>
+							{this.state.errorMsg}
+						</div>
+					</div>
 					<div className='list list-inset'>
-						<label className='item item-input'>
-							<span className='input-label'>E-mail</span>
-							<input type='email' className='input-email' required/>
-						</label>
-						<label className='item item-input'>
-							<span className='input-label'>Username</span>
-							<input type='text' className='input-user-name' required/>
-						</label>
-						<label className='item item-input'>
-							<span className='input-label'>Password</span>
-							<input type='password' className='input-pass-word' />
-						</label>
-						<label className='item item-input'>
-							<span className='input-label'>Confirm Password</span>
-							<input type='password' className='input-pass-word' />
-						</label>
+						<form onSubmit={this.handleRegister}>
+							<label className='item item-input'>
+								<input type='email'
+									className='input-email'
+									placeholder='E-mail'
+									value={this.state.email}
+									onChange={this.updateEmail}
+									required/>
+							</label>
+							<label className='item item-input'>
+								<input type='text'
+									className='input-user-name'
+									placeholder='Username'
+									value={this.state.userName}
+									onChange={this.updateUserName}
+									required/>
+							</label>
+							<label className='item item-input'>
+								<input type='password'
+									className='input-pass-word'
+									placeholder='Password'
+									value={this.state.passWord}
+									onChange={this.updatePassWord}
+									required/>
+							</label>
+							<label className='item item-input'>
+								<input type='password'
+									className='input-pass-word-conf'
+									placeholder='Confirm Password'
+									value={this.state.passWordConf}
+									onChange={this.updatePassWordConf}
+									required/>
+							</label>
+						</form>
 					</div>
 					<div className='row'>
 						<div className='col'>
