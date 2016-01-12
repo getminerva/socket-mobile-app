@@ -38,12 +38,15 @@
 + Distribute cordova APKs
 + Figure out why Ionic isn't displaying properly on my device
 	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
-+ Add form checking to registration (validation, autofill, matching & strength)
++ Fix footer on loginview
 + Fix BackButton touch-event (don't break the line)
 
 # WORKLOG
 
 **1.11.2016**
++ Registration-view
+	+ Add form checking & validation
+	+ Change styling
 + Fix logout (btn==1 confirm)
 + Vatsal figured out proper sizing for the splash images, nice nice
 	+ See: http://stackoverflow.com/questions/13487124/android-splash-screen-sizes-for-ldpi-mdpi-hdpi-xhdpi-displays-eg-1024x76
