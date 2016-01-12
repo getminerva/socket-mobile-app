@@ -1,8 +1,8 @@
 var expect = require('expect');
 var deepfreeze = require('deep-freeze');
 
-var ActionTypes = require('../../constants/ActionTypes.js')
-var sockets = require('../../reducers/Sockets.js');
+var ActionTypes = require('../../src/assets/constants/ActionTypes.js')
+var sockets = require('../../src/assets/reducers/Sockets.js');
 
 const initialState = {
     sockets: []
