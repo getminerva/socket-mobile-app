@@ -27,28 +27,30 @@
 + Style the socketItem better
 	- Vertically align this to middle line
 	- Add icons to range item
-+ Splashscreen
-	+ Figure out proper sizing for Splashscreen
-	+ See: http://stackoverflow.com/questions/13487124/android-splash-screen-sizes-for-ldpi-mdpi-hdpi-xhdpi-displays-eg-1024x76
 + Icon
 	+ Figure out proper sizing for icon
-+ Integrate Redux
++ Swap out the bff stuff in the views for states, stores.
++ Redux
+	- install redux-simple-router
+	- Start integrating redux with the views
 
 ## For 0.1 release #bb0000
 + Distribute cordova APKs
 + Figure out why Ionic isn't displaying properly on my device
 	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
-+ !!reorganize directory tree
-	+ Change Utilities to Common
 + Add form checking to registration (validation, autofill, matching & strength)
++ Fix BackButton touch-event (don't break the line)
++ Fix logout (btn==1 confirm)
 
 # WORKLOG
 
 **1.11.2016**
++ Vatsal figured out proper sizing for the splash images, nice nice
+	+ See: http://stackoverflow.com/questions/13487124/android-splash-screen-sizes-for-ldpi-mdpi-hdpi-xhdpi-displays-eg-1024x76
 + Redux
 	- Reorganize directory tree
 		- Fix breaking changes in the gulpfile, views, www/*
-	- Install redux, redux-simple-router
+	- Install redux
 
 **1.10.2016**
 + Add splashscreen
