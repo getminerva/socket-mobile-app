@@ -33,6 +33,8 @@
 + Redux
 	- install redux-simple-router
 	- Start integrating redux with the views
++ Get splash graphic fixed
++ Get cutout graphic for login page
 
 ## For 0.1 release #bb0000
 + Distribute cordova APKs
