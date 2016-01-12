@@ -38,11 +38,11 @@
 + Distribute cordova APKs
 + Figure out why Ionic isn't displaying properly on my device
 	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
-+ Fix BackButton touch-event (don't break the line)
 
 # WORKLOG
 
 **1.11.2016**
++ Fix BackButton touch-event (don't break the line)
 + Fix footer on loginview
 + Registration-view
 	+ Add form checking & validation
