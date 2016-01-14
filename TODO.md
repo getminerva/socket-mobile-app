@@ -45,6 +45,8 @@
 		- dispatch the event to the store.
 		- append .keyboard-open to app (or body)
 		- onblur (or on keyboard-back & input is focused), remove said class
++ Get splash graphic fixed
++ Get cutout graphic for login page
 
 ## For 0.1 release #bb0000
 + Distribute cordova APKs
