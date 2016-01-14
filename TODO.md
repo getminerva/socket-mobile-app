@@ -33,11 +33,21 @@
 + Redux
 	- install redux-simple-router
 	- Start integrating redux with the views
++ Figure out why Ionic isn't displaying properly on my device
+	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
++ Fix footer popping up above keyboard when it opens.
++ Remove css folder and move styling to components
++ Integrate webpack
++ Hiding on keyboard open -
+	+ Solve this using redux.
+		- add eventlistener to all inputs for focus
+		- if focused, then keyboard is open.
+		- dispatch the event to the store.
+		- append .keyboard-open to app (or body)
+		- onblur (or on keyboard-back & input is focused), remove said class
 
 ## For 0.1 release #bb0000
 + Distribute cordova APKs
-+ Figure out why Ionic isn't displaying properly on my device
-	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
 
 # WORKLOG
 
