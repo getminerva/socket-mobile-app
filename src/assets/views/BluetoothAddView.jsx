@@ -14,8 +14,8 @@ var DiscoveredItem = React.createClass({
 	render: function() {
 		return (
 			<li className='item'>
-				<h1>this.props.name</h1>
-				<span>this.props.id</span>
+				this.props.name
+				<div className='item-note'>this.props.id</div>
 			</li>
 		);
 	}
@@ -24,24 +24,32 @@ var DiscoveredItem = React.createClass({
 var BluetoothAddView = React.createClass({
 	getInitialState: function() {
 		return ({
+			'searching': false,
 			'devices': []
 		});
 	},
 	scanForDevices: function() {
 		console.log("Started scanning...");
-		// TODO
 
 		if (ble) {
 			if (ble.isEnabled()) {
-				var devices = this.state.devices
+				var devs = [];
+				var that = this;
 				ble.startScan([], function(device) {
-					devices.push(device);
-				})
+					devs.push(device);
+					that.setState({'devices': devs});
+				});
 			} else {
-				// TODO: Enable that shit
+				confirm(function(btn) {
+					if (btn==1) {
+						// TODO: Take them to settings and enable that shit
+						console.log("Going to settings...");
+					}
+				}, "Enable bluetooth", ["Settings", "Cancel"] )
 			}
 		} else {
 			// Sorry, no support for BLE or it doesn't exist
+			console.log("Sorry, no support for BLE.")
 		}
 	},
 	stopScanForDevices: function() {
@@ -59,7 +67,8 @@ var BluetoothAddView = React.createClass({
 	},
 	handleChange: function(ev) {
 		// console.log(ev);
-		if (ev.target.checked) {
+		this.setState({'searching': ev.target.checked});
+		if (this.state.searching) {
 			this.scanForDevices();
 		} else {
 			this.stopScanForDevices();
@@ -86,7 +95,9 @@ var BluetoothAddView = React.createClass({
 					<ul className="list">
 						<ToggleItem
 							color='energized'
-							onChange={this.handleChange}>Scan for new Devices
+							value={this.props.searching}
+							onChange={this.handleChange}>
+							Scan for new Devices
 						</ToggleItem>
 						<li className='item item-divider'>Detected devices</li>
 						{items}
