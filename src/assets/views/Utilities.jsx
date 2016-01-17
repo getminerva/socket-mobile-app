@@ -46,7 +46,7 @@ var Footer = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className={'bar bar-footer bar-' + this.props.color + ' ' + this.props.className}>
+			<div className={'hide-on-keyboard-open bar bar-footer bar-' + this.props.color + ' ' + this.props.className}>
 				{this.props.children}
 			</div>
 		);
