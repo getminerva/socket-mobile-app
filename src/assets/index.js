@@ -23,7 +23,7 @@ const App = React.createClass({
 	childContextTypes: {
 		'router': React.PropTypes.object,
 		'bff': React.PropTypes.object,
-		'hideKeyboardItems': React.PropTypes.function
+		'hideKeyboardItems': React.PropTypes.function,
 		'showKeyboardItems': React.PropTypes.function
 	},
 	getDefaultProps: function() {
