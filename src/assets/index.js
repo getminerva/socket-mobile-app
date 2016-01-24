@@ -22,7 +22,9 @@ const Bff = new BFF();
 const App = React.createClass({
 	childContextTypes: {
 		'router': React.PropTypes.object,
-		'bff': React.PropTypes.object
+		'bff': React.PropTypes.object,
+		'showKeyboard': React.PropTypes.func,
+		'hideKeyboard': React.PropTypes.func
 	},
 	getDefaultProps: function() {
 		return ({
@@ -32,11 +34,35 @@ const App = React.createClass({
 	getChildContext: function() {
 		return ({
 			'router': this.props.history,
-			'bff': this.props.bff
+			'bff': this.props.bff,
+			'showKeyboard': this.showKeyboard,
+			'hideKeyboard': this.hideKeyboard
 		});
 	},
+	getInitialState: function() {
+		return ({
+			'keyboardOpen': false
+		});
+	},
+	showKeyboard: function(e) {
+		console.log("Hiding items..");
+		this.setState({'keyboardOpen' : true});
+	},
+	hideKeyboard: function(e) {
+		console.log("Showing items..");
+		this.setState({'keyboardOpen' : false});
+	},
+	setAppBackground: function(e) {
+		// TODO: Make app brackground info here
+		// document.querySelector('');
+	},
 	render: function() {
-		return (this.props.children);
+		var cl = (this.state.keyboardOpen) ? 'keyboard-open' : '';
+		return (
+			<div id="app" className={cl}>
+				{this.props.children}
+			</div>
+		);
 	}
 });
 

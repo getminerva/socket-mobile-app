@@ -47,6 +47,7 @@
 		- onblur (or on keyboard-back & input is focused), remove said class
 + Get splash graphic fixed
 + Get cutout graphic for login page
++ Refactor app into its own component
 
 ## For 0.1 release #bb0000
 + Distribute cordova APKs
