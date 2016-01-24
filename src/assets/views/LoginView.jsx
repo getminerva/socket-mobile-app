@@ -1,4 +1,5 @@
 var React = require('React');
+var Input = require('../components/Common.jsx').Input;
 var Link = require('react-router').Link;
 var Footer = require('./Utilities.jsx').Footer;
 
@@ -45,7 +46,7 @@ var LoginView = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className='app'>
+			<div className='app-view'>
 				<div className='content has-header has-footer'>
 					<div className='row'>
 						<h1>Socket</h1>
@@ -57,14 +58,14 @@ var LoginView = React.createClass({
 					</div>
 					<div className='list list-inset'>
 						<label className='item item-input rounded'>
-							<input type='text'
+							<Input type='text'
 								className='input-user-name'
 								placeholder='Username'/>
 						</label>
 					</div>
 					<form onSubmit={this.handleLogin} className=' list list-inset'>
 						<label className='item item-input rounded'>
-							<input type='password'
+							<Input type='password'
 								className='input-pass-word'
 								placeholder='Password'/>
 						</label>
