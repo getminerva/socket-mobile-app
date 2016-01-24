@@ -23,8 +23,8 @@ const App = React.createClass({
 	childContextTypes: {
 		'router': React.PropTypes.object,
 		'bff': React.PropTypes.object,
-		'hideKeyboardItems': React.PropTypes.function,
-		'showKeyboardItems': React.PropTypes.function
+		'showKeyboard': React.PropTypes.func,
+		'hideKeyboard': React.PropTypes.func
 	},
 	getDefaultProps: function() {
 		return ({
@@ -35,24 +35,34 @@ const App = React.createClass({
 		return ({
 			'router': this.props.history,
 			'bff': this.props.bff,
-			'hideKeyboardItems': this.hideKeyboardItems,
-			'showKeyboardItems': this.showKeyboardItems
+			'showKeyboard': this.showKeyboard,
+			'hideKeyboard': this.hideKeyboard
 		});
 	},
-	hideKeyboardItems: function(e) {
-		var el = document.querySelector('#app-container');
-		el.className += " keyboard-open";
+	getInitialState: function() {
+		return ({
+			'keyboardOpen': false
+		});
 	},
-	showKeyboardItems: function(e) {
-		var el = document.querySelector('#app-container');
-		el.className = el.className.replace( /(?:^|\s)keyboard-open(?!\S)/g , '' );
+	showKeyboard: function(e) {
+		console.log("Hiding items..");
+		this.setState({'keyboardOpen' : true});
+	},
+	hideKeyboard: function(e) {
+		console.log("Showing items..");
+		this.setState({'keyboardOpen' : false});
 	},
 	setAppBackground: function(e) {
 		// TODO: Make app brackground info here
 		// document.querySelector('');
 	},
 	render: function() {
-		return (this.props.children);
+		var cl = (this.state.keyboardOpen) ? 'keyboard-open' : '';
+		return (
+			<div id="app" className={cl}>
+				{this.props.children}
+			</div>
+		);
 	}
 });
 
