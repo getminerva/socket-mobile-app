@@ -125,15 +125,15 @@ var TextInputItem = React.createClass({
 
 var Input = React.createClass({
 	contextTypes: {
-		'hideKeyboardItems': React.PropTypes.function,
-		'showKeyboardItems': React.PropTypes.function
+		'showKeyboard': React.PropTypes.func,
+		'hideKeyboard': React.PropTypes.func
 	},
 	render: function() {
 		return (
-			<input {...this.props} onfocus={this.context.hideKeyboardItems} onblur={this.showKeyboardItems} />
-		)
+			<input {...this.props} onFocus={this.context.showKeyboard} onBlur={this.context.hideKeyboard} />
+		);
 	}
-})
+});
 
 
 var List = React.createClass({
