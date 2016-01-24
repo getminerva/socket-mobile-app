@@ -15,7 +15,7 @@
 + Switch to ES7?
 
 ## For 0.2 release
-+ Implement bluetooth connectivity
++ Implement some bluetooth conectivity
 + Add animation to list-item swiping
 + Backend & BFF
 	+ Move synthetic/important methods into BFF
@@ -35,16 +35,8 @@
 	- Start integrating redux with the views
 + Figure out why Ionic isn't displaying properly on my device
 	- Turns out 'platform-{os}' classes need to be added to the body tag for each specific os. See (http://stackoverflow.com/questions/30419810/ionic-css-renders-differently-on-ionic-serve-android-emulator-and-android-devi)
-+ Fix footer popping up above keyboard when it opens.
 + Remove css folder and move styling to components
 + Integrate webpack
-+ Hiding on keyboard open -
-	+ Solve this using redux.
-		- add eventlistener to all inputs for focus
-		- if focused, then keyboard is open.
-		- dispatch the event to the store.
-		- append .keyboard-open to app (or body)
-		- onblur (or on keyboard-back & input is focused), remove said class
 + Get splash graphic fixed
 + Get cutout graphic for login page
 + Refactor app into its own component
@@ -53,6 +45,17 @@
 + Distribute cordova APKs
 
 # WORKLOG
+
+**1.23.2016**
++ Implement (some) bluetooth connectivity
+	- Currently, it can find and list bluetooth devices in the area but does so very slowly. Also it doesn't show the name of the device, so I'll have to figure that out.
++ Hiding footer on keyboard open
+	- Did not use redux, but it's implemented in a react-like style so it shouldn't be so hard to sub out
+	- add eventlistener to all inputs for focus
+	- if focused, then keyboard is open.
+	- dispatch the event to the store.
+	- append .keyboard-open to app (or body)
+	- onblur (or on keyboard-back & input is focused), remove said class
 
 **1.11.2016**
 + Fix BackButton touch-event (don't break the line)
