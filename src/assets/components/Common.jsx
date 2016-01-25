@@ -123,6 +123,19 @@ var TextInputItem = React.createClass({
 	}
 });
 
+var Input = React.createClass({
+	contextTypes: {
+		'showKeyboard': React.PropTypes.func,
+		'hideKeyboard': React.PropTypes.func
+	},
+	render: function() {
+		return (
+			<input {...this.props} onFocus={this.context.showKeyboard} onBlur={this.context.hideKeyboard} />
+		);
+	}
+});
+
+
 var List = React.createClass({
 	getDefaultProps: function() {
 		return ({
@@ -144,5 +157,6 @@ module.exports = {
 	Range: Range,
 	RangeItem: RangeItem,
 	TextInputItem: TextInputItem,
+	Input: Input,
 	List: List
 }
